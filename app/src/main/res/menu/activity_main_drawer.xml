@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_newSong"
+            android:icon="@drawable/ic_music"
+            android:title="ចម្រៀងថ្មីៗ" />
+        <item
+            android:id="@+id/nav_singer"
+            android:icon="@drawable/ic_singer"
+            android:title="តារាចម្រៀង" />
+        <item
+            android:id="@+id/nav_originalSong"
+            android:icon="@drawable/ic_original"
+            android:title="ចម្រៀង Original" />
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_saveSong"
+            android:icon="@drawable/ic_favorite"
+            android:title="រក្សាទុកចម្រៀង" />
+        <item
+            android:id="@+id/nav_sendSong"
+            android:icon="@drawable/ic_sendsong"
+            android:title="សំណូមពរបទចម្រៀង" />
+    </group>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_feedback"
+            android:icon="@drawable/ic_feedback"
+            android:title="វារតម្លៃ និងគាំទ្រ" />
+        <item
+            android:id="@+id/nav_facebook"
+            android:icon="@drawable/ic_facebook"
+            android:title="Facebook Page" />
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_contact"
+            android:icon="@drawable/ic_contact"
+            android:title="ទំនាក់ទំនង" />
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_settings"
+            android:title="ការកំណត់ព៌មានផ្សេងៗ" />
+    </group>
+
+</menu>
