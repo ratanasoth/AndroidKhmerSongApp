@@ -1,7 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite">
+
+    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/ivProfile"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/khem"
+        app:civ_border_color="@color/colorBlack"
+        app:civ_border_width="1dp" />
+
+    <TextView
+        android:id="@+id/tvNameSong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/ivProfile"
+        android:layout_marginBottom="10dp"
+        android:layout_toRightOf="@id/ivProfile"
+        android:maxLines="1"
+        android:text="បទ៖ បងពីមុនឆ្កួតបាត់ហើយ"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/tvSingerName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvNameSong"
+        android:layout_marginBottom="10dp"
+        android:layout_toRightOf="@+id/ivProfile"
+        android:maxLines="1"
+        android:text="ម្ចាស់ចំនៀង៖ ឆាយ វីរះយុទ្ធ"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/tvTypeSong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@+id/tvSingerName"
+        android:layout_marginBottom="10dp"
+        android:layout_toRightOf="@+id/ivProfile"
+        android:maxLines="1"
+        android:text="បទសម័យ"
+        android:textSize="15sp" />
+
+    <ImageView
+        android:id="@+id/ivReorder"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignBottom="@id/tvSingerName"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@id/tvSingerName"
+        android:src="@drawable/ic_reorder" />
 
 
-</LinearLayout>
+</RelativeLayout>

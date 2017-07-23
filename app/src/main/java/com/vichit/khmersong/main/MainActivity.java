@@ -1,4 +1,4 @@
-package com.vichit.khmersong;
+package com.vichit.khmersong.main;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -10,10 +10,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.vichit.khmersong.R;
+import com.vichit.khmersong.fragment.main.MainFragmentSong;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -29,6 +33,9 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+
     }
 
     @Override
@@ -57,7 +64,7 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+
         }
 
         return super.onOptionsItemSelected(item);
@@ -70,6 +77,10 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_newSong) {
+            MainFragmentSong mainFragmentSong = new MainFragmentSong();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.contentMain, mainFragmentSong)
+                    .commit();
 
         }
 
