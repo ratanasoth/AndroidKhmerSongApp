@@ -55,32 +55,31 @@ public class SubFragmentModernMusic extends Fragment implements OnClickListener 
         super.onViewCreated(view, savedInstanceState);
 
         musicModelList = new ArrayList<>();
+//        musicModelList.add(new MusicModel("បទ៖ បងពីមុនឆ្កួតបាត់ហើយ", "ឆាយ វីរះយុទ្ធ", "http://jomnor.com/images/pictures/thumb/artist/khmer-modern-singers/chhay-virakyuth.jpg", R.raw.audio1.mp3));
+//        musicModelList.add(new MusicModel("បទ៖ បងពីមុនឆ្កួតបាត់ហើយ", "ឆាយ វីរះយុទ្ធ", "http://jomnor.com/images/pictures/thumb/artist/khmer-modern-singers/chhay-virakyuth.jpg", "audio2.mp3"));
+//        musicModelList.add(new MusicModel("បទ៖ បងពីមុនឆ្កួតបាត់ហើយ", "ឆាយ វីរះយុទ្ធ", "http://jomnor.com/images/pictures/thumb/artist/khmer-modern-singers/chhay-virakyuth.jpg", "fd"));
+//        musicModelList.add(new MusicModel("បទ៖ បងពីមុនឆ្កួតបាត់ហើយ", "ឆាយ វីរះយុទ្ធ", "http://jomnor.com/images/pictures/thumb/artist/khmer-modern-singers/chhay-virakyuth.jpg", "fd"));
+//        musicModelList.add(new MusicModel("បទ៖ បងពីមុនឆ្កួតបាត់ហើយ", "ឆាយ វីរះយុទ្ធ", "http://jomnor.com/images/pictures/thumb/artist/khmer-modern-singers/chhay-virakyuth.jpg", "fd"));
+//        musicModelList.add(new MusicModel("បទ៖ បងពីមុនឆ្កួតបាត់ហើយ", "ឆាយ វីរះយុទ្ធ", "http://jomnor.com/images/pictures/thumb/artist/khmer-modern-singers/chhay-virakyuth.jpg", "fd"));
+//        musicModelList.add(new MusicModel("បទ៖ បងពីមុនឆ្កួតបាត់ហើយ", "ឆាយ វីរះយុទ្ធ", "http://jomnor.com/images/pictures/thumb/artist/khmer-modern-singers/chhay-virakyuth.jpg", "fd"));
+//        musicModelList.add(new MusicModel("បទ៖ បងពីមុនឆ្កួតបាត់ហើយ", "ឆាយ វីរះយុទ្ធ", "http://jomnor.com/images/pictures/thumb/artist/khmer-modern-singers/chhay-virakyuth.jpg", "fd"));
 
-        musicModelList.add(new MusicModel("បទ៖ បងពីមុនឆ្កួតបាត់ហើយ", "ឆាយ វីរះយុទ្ធ", "http://jomnor.com/images/pictures/thumb/artist/khmer-modern-singers/chhay-virakyuth.jpg", "fd"));
-        musicModelList.add(new MusicModel("បទ៖ បងពីមុនឆ្កួតបាត់ហើយ", "ឆាយ វីរះយុទ្ធ", "http://jomnor.com/images/pictures/thumb/artist/khmer-modern-singers/chhay-virakyuth.jpg", "fd"));
-        musicModelList.add(new MusicModel("បទ៖ បងពីមុនឆ្កួតបាត់ហើយ", "ឆាយ វីរះយុទ្ធ", "http://jomnor.com/images/pictures/thumb/artist/khmer-modern-singers/chhay-virakyuth.jpg", "fd"));
-        musicModelList.add(new MusicModel("បទ៖ បងពីមុនឆ្កួតបាត់ហើយ", "ឆាយ វីរះយុទ្ធ", "http://jomnor.com/images/pictures/thumb/artist/khmer-modern-singers/chhay-virakyuth.jpg", "fd"));
-        musicModelList.add(new MusicModel("បទ៖ បងពីមុនឆ្កួតបាត់ហើយ", "ឆាយ វីរះយុទ្ធ", "http://jomnor.com/images/pictures/thumb/artist/khmer-modern-singers/chhay-virakyuth.jpg", "fd"));
-        musicModelList.add(new MusicModel("បទ៖ បងពីមុនឆ្កួតបាត់ហើយ", "ឆាយ វីរះយុទ្ធ", "http://jomnor.com/images/pictures/thumb/artist/khmer-modern-singers/chhay-virakyuth.jpg", "fd"));
-        musicModelList.add(new MusicModel("បទ៖ បងពីមុនឆ្កួតបាត់ហើយ", "ឆាយ វីរះយុទ្ធ", "http://jomnor.com/images/pictures/thumb/artist/khmer-modern-singers/chhay-virakyuth.jpg", "fd"));
-        musicModelList.add(new MusicModel("បទ៖ បងពីមុនឆ្កួតបាត់ហើយ", "ឆាយ វីរះយុទ្ធ", "http://jomnor.com/images/pictures/thumb/artist/khmer-modern-singers/chhay-virakyuth.jpg", "fd"));
+
         adapter = new MusicCustomAdapter(musicModelList, getContext());
         rvModernMusic.setAdapter(adapter);
 
         adapter.setOnClickListener(this);
-
-
     }
 
     @Override
-    public void onItemClick(int position, View view) {
+    public void onClickView(int position, View view) {
         musicModel = musicModelList.get(position);
         PopupMenu popupMenu = new PopupMenu(getContext(), view);
         popupMenu.inflate(R.menu.add_favorite);
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.popup_Favorite:
                         showMessage("Favorite");
                         break;
@@ -94,6 +93,12 @@ public class SubFragmentModernMusic extends Fragment implements OnClickListener 
 
         });
         popupMenu.show();
+
+    }
+
+    @Override
+    public void onItemClick(int postion) {
+        showMessage(postion + "");
 
     }
 

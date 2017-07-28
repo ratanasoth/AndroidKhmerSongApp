@@ -1,22 +1,18 @@
 package com.vichit.khmersong.model;
 
-/**
- * Created by VichitDeveloper on 7/22/17.
- */
 
 public class MusicModel {
 
     private String titleName;
     private String singerName;
-    private String pathUrl;
-    private String ivProfile;
+    private int pathUrl;
+    private String profile;
 
-
-    public MusicModel(String titleName, String singerName, String ivProfile, String pathUrl) {
+    public MusicModel(String titleName, String singerName, String profile, int pathUrl) {
         this.titleName = titleName;
-        this.pathUrl = pathUrl;
         this.singerName = singerName;
-        this.ivProfile = ivProfile;
+        this.pathUrl = pathUrl;
+        this.profile = profile;
     }
 
     public String getTitleName() {
@@ -27,11 +23,11 @@ public class MusicModel {
         this.titleName = titleName;
     }
 
-    public String getPathUrl() {
+    public int getPathUrl() {
         return pathUrl;
     }
 
-    public void setPathUrl(String pathUrl) {
+    public void setPathUrl(int pathUrl) {
         this.pathUrl = pathUrl;
     }
 
@@ -43,11 +39,15 @@ public class MusicModel {
         this.singerName = singerName;
     }
 
-    public String getIvProfile() {
-        return ivProfile;
+    public String getProfile() {
+        return profile;
     }
 
-    public void setIvProfile(String ivProfile) {
-        this.ivProfile = ivProfile;
+    public void setProfile(String profile) {
+        this.profile = profile;
     }
+
+
+
+
 }

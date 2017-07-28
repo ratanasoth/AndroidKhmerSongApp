@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layoutSong"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@color/colorWhite">
@@ -29,7 +30,7 @@
         android:textSize="15sp" />
 
     <TextView
-        android:id="@+id/tvSingerName"
+        android:id="@+id/tvSingerName_Music"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvNameSong"
@@ -44,7 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:layout_below="@+id/tvSingerName"
+        android:layout_below="@+id/tvSingerName_Music"
         android:layout_marginBottom="10dp"
         android:layout_toRightOf="@+id/ivProfile"
         android:maxLines="1"
@@ -55,9 +56,9 @@
         android:id="@+id/ivReorder"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_alignBottom="@id/tvSingerName"
+        android:layout_alignBottom="@id/tvSingerName_Music"
         android:layout_alignParentRight="true"
-        android:layout_alignTop="@id/tvSingerName"
+        android:layout_alignTop="@id/tvSingerName_Music"
         android:src="@drawable/ic_reorder" />
 
 

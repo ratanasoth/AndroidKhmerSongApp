@@ -18,37 +18,44 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
-public class MusicCustomAdapter extends RecyclerView.Adapter<MusicCustomAdapter.MusicHolder> {
+public class MusicCustomAdapter extends RecyclerView.Adapter<MusicCustomAdapter.MusicViewHolder> {
 
     private List<MusicModel> musicModelList;
     private MusicModel musicModel;
-    Context context;
     OnClickListener onClickListener;
+
+
+    Context context;
+    View view;
 
 
     public MusicCustomAdapter(List<MusicModel> musicModelList, Context context) {
         this.musicModelList = musicModelList;
         this.context = context;
-    }
-
-    @Override
-    public MusicHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.custom_layout_song, parent, false);
-        return new MusicHolder(view);
 
     }
 
+
     @Override
-    public void onBindViewHolder(MusicHolder holder, int position) {
+    public MusicViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        view = inflater.inflate(R.layout.custom_layout_song, parent, false);
+
+        return new MusicViewHolder(view);
+
+
+    }
+
+    @Override
+    public void onBindViewHolder(MusicViewHolder holder, int position) {
         musicModel = musicModelList.get(position);
+
 
         holder.tvSongName.setText(musicModel.getTitleName());
         holder.tvSinger.setText(musicModel.getSingerName());
         Picasso.with(context)
-                .load(musicModel.getIvProfile())
+                .load(musicModel.getProfile())
                 .into(holder.ivProfile);
-
 
     }
 
@@ -62,30 +69,39 @@ public class MusicCustomAdapter extends RecyclerView.Adapter<MusicCustomAdapter.
 
     }
 
-
-    class MusicHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class MusicViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView tvSongName;
         TextView tvSinger;
         CircleImageView ivProfile;
         ImageView ivReorder;
+        //private View viewAntiProgress;
 
-        public MusicHolder(View itemView) {
+        public MusicViewHolder(View itemView) {
             super(itemView);
 
             tvSongName = (TextView) itemView.findViewById(R.id.tvNameSong);
-            tvSinger = (TextView) itemView.findViewById(R.id.tvSingerName);
+            tvSinger = (TextView) itemView.findViewById(R.id.tvSingerName_Music);
             ivProfile = (CircleImageView) itemView.findViewById(R.id.ivProfile);
             ivReorder = (ImageView) itemView.findViewById(R.id.ivReorder);
 
             ivReorder.setOnClickListener(this);
+            itemView.setOnClickListener(this);
 
         }
 
         @Override
         public void onClick(View v) {
-            onClickListener.onItemClick(getAdapterPosition(), v);
+            switch (v.getId()) {
+                case R.id.ivReorder:
+                    onClickListener.onClickView(getAdapterPosition(), v);
+                    break;
+                case R.id.layoutSong:
+                    onClickListener.onItemClick(getAdapterPosition());
+
+            }
 
 
         }
     }
+
 }

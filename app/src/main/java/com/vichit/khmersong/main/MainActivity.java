@@ -10,14 +10,26 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.jean.jcplayer.JcAudio;
+import com.example.jean.jcplayer.JcPlayerView;
 import com.vichit.khmersong.R;
+import com.vichit.khmersong.callback.OnPassData;
 import com.vichit.khmersong.fragment.main.MainFragmentSong;
+import com.vichit.khmersong.fragment.main.SingerFragment;
+import com.vichit.khmersong.model.MusicModel;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, OnPassData {
+
+    JcPlayerView jcPlayer;
+    List<JcAudio> jcAudios;
+    MusicModel musicModel;
+    String songName;
+    int pathUrl;
 
     @Override
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -34,7 +46,8 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
+        jcPlayer = (JcPlayerView) findViewById(R.id.jcPlayer);
+        jcPlayer.initPlaylist(new ArrayList<JcAudio>());
 
     }
 
@@ -50,16 +63,13 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -76,16 +86,51 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+
         if (id == R.id.nav_newSong) {
             MainFragmentSong mainFragmentSong = new MainFragmentSong();
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.contentMain, mainFragmentSong)
                     .commit();
-
+        } else if (id == R.id.nav_singer) {
+            SingerFragment singerFragment = new SingerFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.contentMain, singerFragment)
+                    .commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+    //get data from old fragments
+    @Override
+    public void onPassDataToActivity(List<MusicModel> musicModelList, int postion) {
+
+        if (musicModelList != null) {
+            jcAudios = new ArrayList<>();
+            musicModel = musicModelList.get(postion);
+
+            pathUrl = musicModel.getPathUrl();
+            songName = musicModel.getTitleName();
+
+            jcPlayer.playAudio(JcAudio.createFromRaw(songName, pathUrl));
+
+        }
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        jcPlayer.createNotification();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        jcPlayer.kill();
     }
 }

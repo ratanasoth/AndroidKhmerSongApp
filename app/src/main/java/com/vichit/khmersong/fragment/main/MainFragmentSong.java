@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +39,6 @@ public class MainFragmentSong extends Fragment {
         tabLayout = (TabLayout) v.findViewById(R.id.tabLayout);
         viewPager = (ViewPager) v.findViewById(R.id.viewPager);
 
-        Log.e("ppppp", "onCreateView MainFragment");
         return v;
     }
 
@@ -49,15 +47,12 @@ public class MainFragmentSong extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
+
         adapter = new MyPagerApdapter(getChildFragmentManager(), getContext());
         adapter.addTab(new Tab("ចម្រៀងសម័យ", subFragmentModernMusic));
         adapter.addTab(new Tab("ចម្រៀងបុរាណ", subFragmentOldMusic));
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
-
-        Log.e("ppppp", "MainFragment" + adapter.toString());
-
-        Log.e("ppppp", "onViewCreated MainFragment");
 
 
     }
