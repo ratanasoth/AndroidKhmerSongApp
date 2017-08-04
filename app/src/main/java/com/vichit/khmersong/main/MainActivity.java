@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.jean.jcplayer.JcAudio;
+import com.example.jean.jcplayer.JcPlayerService;
 import com.example.jean.jcplayer.JcPlayerView;
 import com.vichit.khmersong.R;
 import com.vichit.khmersong.callback.OnPassData;
@@ -21,13 +22,15 @@ import com.vichit.khmersong.model.MusicModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, OnPassData {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
+        OnPassData, JcPlayerService.JcPlayerServiceListener, JcPlayerService.OnInvalidPathListener {
 
     JcPlayerView jcPlayer;
-    List<JcAudio> jcAudios;
-    MusicModel musicModel;
-    String songName;
+    ArrayList<JcAudio> jcAudiosList;
+    JcAudio jcAudio;
+    String titleName;
     int pathUrl;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         jcPlayer = (JcPlayerView) findViewById(R.id.jcPlayer);
         jcPlayer.initPlaylist(new ArrayList<JcAudio>());
+        jcPlayer.registerInvalidPathListener(this);
+
 
     }
 
@@ -107,16 +112,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     //get data from old fragments
     @Override
-    public void onPassDataToActivity(List<MusicModel> musicModelList, int postion) {
+    public void onPassDataToActivity(List<MusicModel> musicModelList, int position) {
 
         if (musicModelList != null) {
-            jcAudios = new ArrayList<>();
-            musicModel = musicModelList.get(postion);
+            jcAudiosList = new ArrayList<>();
 
-            pathUrl = musicModel.getPathUrl();
-            songName = musicModel.getTitleName();
+            for (MusicModel m : musicModelList) {
 
-            jcPlayer.playAudio(JcAudio.createFromRaw(songName, pathUrl));
+                titleName = m.getTitleName();
+                pathUrl = m.getPathUrl();
+
+                jcAudiosList.add(JcAudio.createFromRaw(titleName, pathUrl));
+
+            }
+
+
+            //
+            //jcPlayer.playAudio(jcAudiosList.get(position));
+
+
+            //get only song
+            // jcPlayer.playAudio(JcAudio.createFromRaw(songName, pathUrl));
+
 
         }
 
@@ -132,5 +149,45 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onDestroy() {
         super.onDestroy();
         jcPlayer.kill();
+    }
+
+    @Override
+    public void onPreparedAudio(String audioName, int duration) {
+
+    }
+
+    @Override
+    public void onCompletedAudio() {
+
+    }
+
+    @Override
+    public void onPaused() {
+
+    }
+
+    @Override
+    public void onContinueAudio() {
+
+    }
+
+    @Override
+    public void onPlaying() {
+
+    }
+
+    @Override
+    public void onTimeChanged(long currentTime) {
+
+    }
+
+    @Override
+    public void updateTitle(String title) {
+
+    }
+
+    @Override
+    public void onPathError(JcAudio jcAudio) {
+
     }
 }

@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -46,7 +45,6 @@ public class SubFragmentModernMusic extends Fragment implements OnClickListener 
         rvModernMusic.setLayoutManager(new LinearLayoutManager(getContext(),
                 LinearLayoutManager.VERTICAL, false));
 
-        Log.e("pppp", "onCreateView SubFragment");
         return v;
     }
 
@@ -58,13 +56,9 @@ public class SubFragmentModernMusic extends Fragment implements OnClickListener 
 //        musicModelList.add(new MusicModel("បទ៖ បងពីមុនឆ្កួតបាត់ហើយ", "ឆាយ វីរះយុទ្ធ", "http://jomnor.com/images/pictures/thumb/artist/khmer-modern-singers/chhay-virakyuth.jpg", R.raw.audio1.mp3));
 //        musicModelList.add(new MusicModel("បទ៖ បងពីមុនឆ្កួតបាត់ហើយ", "ឆាយ វីរះយុទ្ធ", "http://jomnor.com/images/pictures/thumb/artist/khmer-modern-singers/chhay-virakyuth.jpg", "audio2.mp3"));
 //        musicModelList.add(new MusicModel("បទ៖ បងពីមុនឆ្កួតបាត់ហើយ", "ឆាយ វីរះយុទ្ធ", "http://jomnor.com/images/pictures/thumb/artist/khmer-modern-singers/chhay-virakyuth.jpg", "fd"));
-//        musicModelList.add(new MusicModel("បទ៖ បងពីមុនឆ្កួតបាត់ហើយ", "ឆាយ វីរះយុទ្ធ", "http://jomnor.com/images/pictures/thumb/artist/khmer-modern-singers/chhay-virakyuth.jpg", "fd"));
-//        musicModelList.add(new MusicModel("បទ៖ បងពីមុនឆ្កួតបាត់ហើយ", "ឆាយ វីរះយុទ្ធ", "http://jomnor.com/images/pictures/thumb/artist/khmer-modern-singers/chhay-virakyuth.jpg", "fd"));
-//        musicModelList.add(new MusicModel("បទ៖ បងពីមុនឆ្កួតបាត់ហើយ", "ឆាយ វីរះយុទ្ធ", "http://jomnor.com/images/pictures/thumb/artist/khmer-modern-singers/chhay-virakyuth.jpg", "fd"));
-//        musicModelList.add(new MusicModel("បទ៖ បងពីមុនឆ្កួតបាត់ហើយ", "ឆាយ វីរះយុទ្ធ", "http://jomnor.com/images/pictures/thumb/artist/khmer-modern-singers/chhay-virakyuth.jpg", "fd"));
-//        musicModelList.add(new MusicModel("បទ៖ បងពីមុនឆ្កួតបាត់ហើយ", "ឆាយ វីរះយុទ្ធ", "http://jomnor.com/images/pictures/thumb/artist/khmer-modern-singers/chhay-virakyuth.jpg", "fd"));
 
-
+        //http://download1347.mediafireuserdownload.com/fwcuyy35rirg/u8n19g4e111eokw/audio.mp3
+        //http://download1504.mediafireuserdownload.com/zmsbzz5h5egg/8087u8x9p21m428/Khae-Angie.mp3
         adapter = new MusicCustomAdapter(musicModelList, getContext());
         rvModernMusic.setAdapter(adapter);
 
@@ -97,10 +91,15 @@ public class SubFragmentModernMusic extends Fragment implements OnClickListener 
     }
 
     @Override
-    public void onItemClick(int postion) {
-        showMessage(postion + "");
+    public void onItemClick(List<MusicModel> musicModelList, int postion) {
 
     }
+
+//    @Override
+//    public void onItemClick(int postion) {
+//        showMessage(postion + "");
+//
+//    }
 
     private void showMessage(String message) {
         Toast.makeText(getContext(), message + "", Toast.LENGTH_SHORT).show();

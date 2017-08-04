@@ -22,11 +22,9 @@ public class MusicCustomAdapter extends RecyclerView.Adapter<MusicCustomAdapter.
 
     private List<MusicModel> musicModelList;
     private MusicModel musicModel;
-    OnClickListener onClickListener;
-
-
-    Context context;
-    View view;
+    private OnClickListener onClickListener;
+    private Context context;
+    private View view;
 
 
     public MusicCustomAdapter(List<MusicModel> musicModelList, Context context) {
@@ -35,21 +33,17 @@ public class MusicCustomAdapter extends RecyclerView.Adapter<MusicCustomAdapter.
 
     }
 
-
     @Override
     public MusicViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         view = inflater.inflate(R.layout.custom_layout_song, parent, false);
 
         return new MusicViewHolder(view);
-
-
     }
 
     @Override
     public void onBindViewHolder(MusicViewHolder holder, int position) {
         musicModel = musicModelList.get(position);
-
 
         holder.tvSongName.setText(musicModel.getTitleName());
         holder.tvSinger.setText(musicModel.getSingerName());
@@ -96,7 +90,7 @@ public class MusicCustomAdapter extends RecyclerView.Adapter<MusicCustomAdapter.
                     onClickListener.onClickView(getAdapterPosition(), v);
                     break;
                 case R.id.layoutSong:
-                    onClickListener.onItemClick(getAdapterPosition());
+                    onClickListener.onItemClick(musicModelList, getAdapterPosition());
 
             }
 

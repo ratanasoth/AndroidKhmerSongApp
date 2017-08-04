@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -53,9 +54,13 @@ public class SubFragmentOldMusic extends Fragment implements OnClickListener {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        Log.e("ppppp", "onVieweated Old");
         musicModelList = new ArrayList<>();
-        musicModelList.add(new MusicModel("បទ៖ ស្រលាញ់គីគីលូ", "ខេមរះ សេរីមន្ត", "http://jomnor.com/images/pictures/thumb/artist/khmer-modern-singers/chhay-virakyuth.jpg", R.raw.audio1));
-        musicModelList.add(new MusicModel("បទ៖ បងពីមុនឆ្កួតបាត់ហើយ", "ឆាយ វីរះយុទ្ធ", "http://jomnor.com/images/pictures/thumb/artist/khmer-modern-singers/chhay-virakyuth.jpg", R.raw.audio2));
+
+        musicModelList.add(new MusicModel("បទ៖ រាំតាមពូ", "ខេមរះ សេរីមន្ត", "http://jomnor.com/images/pictures/thumb/artist/khmer-modern-singers/chhay-virakyuth.jpg", R.raw.audio1));
+        musicModelList.add(new MusicModel("បទ៖ ពីរខែ", "អែនជី", "http://chomreang.com/images/pictures/fb_images/artist%20new/New%20500/Angie.png", R.raw.audio2));
+        musicModelList.add(new MusicModel("បទ៖ ចាក់ទឹកដូង", "យូរី", "http://1.bp.blogspot.com/-n4Iw5ihCDt0/UcbyQqJkAuI/AAAAAAAAGT0/AoPt0MOpoI8/s1600/yuri24.jpg", R.raw.audio3));
+
 
         adapter = new MusicCustomAdapter(musicModelList, getContext());
         rvOldMusic.setAdapter(adapter);
@@ -99,12 +104,19 @@ public class SubFragmentOldMusic extends Fragment implements OnClickListener {
 
     }
 
-    //send data to activity
     @Override
-    public void onItemClick(int postion) {
-        sendData(musicModelList, postion);
+    public void onItemClick(List<MusicModel> musicModelList, int position) {
+        sendData(musicModelList, position);
 
     }
+
+//    //send data to activity
+//    @Override
+//    public void onItemClick(int postion) {
+//        sendData(musicModelList, postion);
+//
+//
+//    }
 
     private void showMessage(String message) {
         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();

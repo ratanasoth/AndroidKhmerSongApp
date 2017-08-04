@@ -15,6 +15,9 @@ public class MusicModel {
         this.profile = profile;
     }
 
+    public MusicModel() {
+    }
+
     public String getTitleName() {
         return titleName;
     }
