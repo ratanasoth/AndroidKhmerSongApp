@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import com.vichit.khmersong.R;
 import com.vichit.khmersong.callback.OnClickListener;
-import com.vichit.khmersong.model.MusicModel;
+import com.vichit.khmersong.song_respone.SongRespone;
 
 import java.util.List;
 
@@ -20,15 +20,17 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MusicCustomAdapter extends RecyclerView.Adapter<MusicCustomAdapter.MusicViewHolder> {
 
-    private List<MusicModel> musicModelList;
-    private MusicModel musicModel;
+    //    private List<MusicModel> musicModelList;
+//    private MusicModel musicModel;
+    private List<SongRespone> songList;
+    private SongRespone songRespone;
     private OnClickListener onClickListener;
     private Context context;
     private View view;
 
 
-    public MusicCustomAdapter(List<MusicModel> musicModelList, Context context) {
-        this.musicModelList = musicModelList;
+    public MusicCustomAdapter(List<SongRespone> songList, Context context) {
+        this.songList = songList;
         this.context = context;
 
     }
@@ -43,19 +45,19 @@ public class MusicCustomAdapter extends RecyclerView.Adapter<MusicCustomAdapter.
 
     @Override
     public void onBindViewHolder(MusicViewHolder holder, int position) {
-        musicModel = musicModelList.get(position);
+        songRespone = songList.get(position);
 
-        holder.tvSongName.setText(musicModel.getTitleName());
-        holder.tvSinger.setText(musicModel.getSingerName());
+        holder.tvSongName.setText(songRespone.getSongName());
+        holder.tvSinger.setText(songRespone.getSingerName());
         Picasso.with(context)
-                .load(musicModel.getProfile())
+                .load(songRespone.getSingerImage())
                 .into(holder.ivProfile);
 
     }
 
     @Override
     public int getItemCount() {
-        return musicModelList.size();
+        return songList.size();
     }
 
     public void setOnClickListener(OnClickListener onClickListener) {
@@ -68,7 +70,6 @@ public class MusicCustomAdapter extends RecyclerView.Adapter<MusicCustomAdapter.
         TextView tvSinger;
         CircleImageView ivProfile;
         ImageView ivReorder;
-        //private View viewAntiProgress;
 
         public MusicViewHolder(View itemView) {
             super(itemView);
@@ -90,10 +91,9 @@ public class MusicCustomAdapter extends RecyclerView.Adapter<MusicCustomAdapter.
                     onClickListener.onClickView(getAdapterPosition(), v);
                     break;
                 case R.id.layoutSong:
-                    onClickListener.onItemClick(musicModelList, getAdapterPosition());
+                    onClickListener.onItemClick(songList, getAdapterPosition());
 
             }
-
 
         }
     }
