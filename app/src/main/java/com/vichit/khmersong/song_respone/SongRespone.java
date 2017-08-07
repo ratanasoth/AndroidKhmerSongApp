@@ -2,114 +2,96 @@ package com.vichit.khmersong.song_respone;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
-/**
- * Created by VichitDeveloper on 8/4/17.
- */
-
 public class SongRespone {
 
 
-    @SerializedName("data")
-    private List<Songs> listSong;
+    @SerializedName("id")
+    private String id;
 
-    public List<Songs> getSong() {
-        return listSong;
+    @SerializedName("song_name")
+    private String songName;
+
+    @SerializedName("song_url")
+    private String songUrl;
+
+    @SerializedName("singer_name")
+    private String singerName;
+
+    @SerializedName("singer_image")
+    private String singerImage;
+
+    @SerializedName("type_name")
+    private String typeName;
+
+    @SerializedName("category_name")
+    private String categoryName;
+
+    public String getId() {
+        return id;
     }
 
-    public void setSong(List<Songs> listSong) {
-        this.listSong = listSong;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public static class Songs {
+    public String getSongName() {
+        return songName;
+    }
 
-        @SerializedName("id")
-        private int id;
+    public void setSongName(String songName) {
+        this.songName = songName;
+    }
 
-        @SerializedName("name")
-        private String name;
+    public String getSongUrl() {
+        return songUrl;
+    }
 
-        @SerializedName("url")
-        private String url;
+    public void setSongUrl(String songUrl) {
+        this.songUrl = songUrl;
+    }
 
-        @SerializedName("categories_id")
-        private int categoriesId;
+    public String getSingerName() {
+        return singerName;
+    }
 
-        @SerializedName("singers_id")
-        private int singersId;
+    public void setSingerName(String singerName) {
+        this.singerName = singerName;
+    }
 
-        @SerializedName("types_id")
-        private int typesId;
+    public String getSingerImage() {
+        return singerImage;
+    }
 
-        @SerializedName("created_at")
-        private String createdAt;
+    public void setSingerImage(String singerImage) {
+        this.singerImage = singerImage;
+    }
 
-        @SerializedName("updated_at")
-        private String updatedAt;
+    public String getTypeName() {
+        return typeName;
+    }
 
-        public int getId() {
-            return id;
-        }
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
+    }
 
-        public void setId(int id) {
-            this.id = id;
-        }
+    public String getCategoryName() {
+        return categoryName;
+    }
 
-        public String getName() {
-            return name;
-        }
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
 
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getUrl() {
-            return url;
-        }
-
-        public void setUrl(String url) {
-            this.url = url;
-        }
-
-        public int getCategoriesId() {
-            return categoriesId;
-        }
-
-        public void setCategoriesId(int categoriesId) {
-            this.categoriesId = categoriesId;
-        }
-
-        public int getSingersId() {
-            return singersId;
-        }
-
-        public void setSingersId(int singersId) {
-            this.singersId = singersId;
-        }
-
-        public int getTypesId() {
-            return typesId;
-        }
-
-        public void setTypesId(int typesId) {
-            this.typesId = typesId;
-        }
-
-        public String getCreatedAt() {
-            return createdAt;
-        }
-
-        public void setCreatedAt(String createdAt) {
-            this.createdAt = createdAt;
-        }
-
-        public String getUpdatedAt() {
-            return updatedAt;
-        }
-
-        public void setUpdatedAt(String updatedAt) {
-            this.updatedAt = updatedAt;
-        }
+    @Override
+    public String toString() {
+        return "SongRespone{" +
+                "id='" + id + '\'' +
+                ", songName='" + songName + '\'' +
+                ", songUrl='" + songUrl + '\'' +
+                ", singerName='" + singerName + '\'' +
+                ", singerImage='" + singerImage + '\'' +
+                ", typeName='" + typeName + '\'' +
+                ", categoryName='" + categoryName + '\'' +
+                '}';
     }
 }

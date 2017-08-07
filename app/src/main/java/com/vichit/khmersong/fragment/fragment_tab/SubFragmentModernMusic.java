@@ -1,12 +1,15 @@
 package com.vichit.khmersong.fragment.fragment_tab;
 
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,17 +19,25 @@ import android.widget.Toast;
 import com.vichit.khmersong.R;
 import com.vichit.khmersong.adapter_layout.MusicCustomAdapter;
 import com.vichit.khmersong.callback.OnClickListener;
-import com.vichit.khmersong.model.MusicModel;
+import com.vichit.khmersong.callback.OnPassData;
+import com.vichit.khmersong.interface_generator.SongService;
+import com.vichit.khmersong.service_generator.ServiceGenerator;
+import com.vichit.khmersong.song_respone.SongRespone;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class SubFragmentModernMusic extends Fragment implements OnClickListener {
     RecyclerView rvModernMusic;
     MusicCustomAdapter adapter;
-    MusicModel musicModel;
-    List<MusicModel> musicModelList;
+    SongRespone songRespone;
+    List<SongRespone> songList;
+    OnPassData onPassData;
 
 
     public SubFragmentModernMusic() {
@@ -41,9 +52,7 @@ public class SubFragmentModernMusic extends Fragment implements OnClickListener 
         View v = inflater.inflate(R.layout.sub_fragment_modern_music, container, false);
 
         rvModernMusic = (RecyclerView) v.findViewById(R.id.rvModernMusic);
-
-        rvModernMusic.setLayoutManager(new LinearLayoutManager(getContext(),
-                LinearLayoutManager.VERTICAL, false));
+        rvModernMusic.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 
         return v;
     }
@@ -52,22 +61,33 @@ public class SubFragmentModernMusic extends Fragment implements OnClickListener 
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        musicModelList = new ArrayList<>();
-//        musicModelList.add(new MusicModel("បទ៖ បងពីមុនឆ្កួតបាត់ហើយ", "ឆាយ វីរះយុទ្ធ", "http://jomnor.com/images/pictures/thumb/artist/khmer-modern-singers/chhay-virakyuth.jpg", R.raw.audio1.mp3));
-//        musicModelList.add(new MusicModel("បទ៖ បងពីមុនឆ្កួតបាត់ហើយ", "ឆាយ វីរះយុទ្ធ", "http://jomnor.com/images/pictures/thumb/artist/khmer-modern-singers/chhay-virakyuth.jpg", "audio2.mp3"));
-//        musicModelList.add(new MusicModel("បទ៖ បងពីមុនឆ្កួតបាត់ហើយ", "ឆាយ វីរះយុទ្ធ", "http://jomnor.com/images/pictures/thumb/artist/khmer-modern-singers/chhay-virakyuth.jpg", "fd"));
+        songList = new ArrayList<>();
 
-        //http://download1347.mediafireuserdownload.com/fwcuyy35rirg/u8n19g4e111eokw/audio.mp3
-        //http://download1504.mediafireuserdownload.com/zmsbzz5h5egg/8087u8x9p21m428/Khae-Angie.mp3
-        adapter = new MusicCustomAdapter(musicModelList, getContext());
-        rvModernMusic.setAdapter(adapter);
+        SongService songService = ServiceGenerator.createService(SongService.class);
+        Call<List<SongRespone>> call = songService.findAllSong();
+        call.enqueue(new Callback<List<SongRespone>>() {
+            @Override
+            public void onResponse(Call<List<SongRespone>> call, Response<List<SongRespone>> response) {
+                adapter = new MusicCustomAdapter(response.body(), getContext());
+                rvModernMusic.setAdapter(adapter);
+            }
 
-        adapter.setOnClickListener(this);
+            @Override
+            public void onFailure(Call<List<SongRespone>> call, Throwable t) {
+                Log.e("pppppp", "onFailure");
+                t.printStackTrace();
+            }
+        });
+
+
+//        adapter.setOnClickListener(this);
+
+
     }
 
     @Override
     public void onClickView(int position, View view) {
-        musicModel = musicModelList.get(position);
+        songRespone = songList.get(position);
         PopupMenu popupMenu = new PopupMenu(getContext(), view);
         popupMenu.inflate(R.menu.add_favorite);
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -90,16 +110,30 @@ public class SubFragmentModernMusic extends Fragment implements OnClickListener 
 
     }
 
+    //send data to activity
     @Override
-    public void onItemClick(List<MusicModel> musicModelList, int postion) {
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        Activity activity;
+        if (context instanceof Activity) {
+            activity = (Activity) context;
+            onPassData = (OnPassData) activity;
+        }
+    }
+
+    //send data to activity
+    public void sendData(List<SongRespone> songList, int postion) {
+        onPassData.onPassDataToActivity(songList, postion);
 
     }
 
-//    @Override
-//    public void onItemClick(int postion) {
-//        showMessage(postion + "");
-//
-//    }
+    @Override
+    public void onItemClick(List<SongRespone> songList, int postion) {
+        sendData(songList, postion);
+        Log.e("ppppp", "send");
+
+    }
+
 
     private void showMessage(String message) {
         Toast.makeText(getContext(), message + "", Toast.LENGTH_SHORT).show();

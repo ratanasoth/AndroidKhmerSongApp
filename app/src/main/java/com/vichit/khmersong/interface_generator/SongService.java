@@ -2,6 +2,8 @@ package com.vichit.khmersong.interface_generator;
 
 import com.vichit.khmersong.song_respone.SongRespone;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.GET;
 
@@ -11,7 +13,8 @@ import retrofit2.http.GET;
 
 public interface SongService {
 
-    @GET("api/v1/songs")
-    Call<SongRespone> findAllSong();
+    @GET("allsong.php")
+    Call<List<SongRespone>> findAllSong();
+
 
 }
