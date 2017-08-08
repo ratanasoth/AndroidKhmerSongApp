@@ -1,15 +1,12 @@
 package com.vichit.khmersong.fragment.fragment_tab;
 
 
-import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,7 +17,7 @@ import com.vichit.khmersong.R;
 import com.vichit.khmersong.adapter_layout.MusicCustomAdapter;
 import com.vichit.khmersong.callback.OnClickListener;
 import com.vichit.khmersong.callback.OnPassData;
-import com.vichit.khmersong.model.MusicModel;
+import com.vichit.khmersong.song_respone.SongRespones;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,9 +25,9 @@ import java.util.List;
 public class SubFragmentOldMusic extends Fragment implements OnClickListener {
 
     RecyclerView rvOldMusic;
-    List<MusicModel> musicModelList;
+    List<SongRespones> songList;
     MusicCustomAdapter adapter;
-    MusicModel musicModel;
+    SongRespones songRespones;
     OnPassData onPassData;
 
 
@@ -54,34 +51,19 @@ public class SubFragmentOldMusic extends Fragment implements OnClickListener {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Log.e("ppppp", "onVieweated Old");
-        musicModelList = new ArrayList<>();
+        songList = new ArrayList<>();
 
-        musicModelList.add(new MusicModel("បទ៖ រាំតាមពូ", "ខេមរះ សេរីមន្ត", "http://jomnor.com/images/pictures/thumb/artist/khmer-modern-singers/chhay-virakyuth.jpg", R.raw.audio1));
-        musicModelList.add(new MusicModel("បទ៖ ពីរខែ", "អែនជី", "http://chomreang.com/images/pictures/fb_images/artist%20new/New%20500/Angie.png", R.raw.audio2));
-        musicModelList.add(new MusicModel("បទ៖ ចាក់ទឹកដូង", "យូរី", "http://1.bp.blogspot.com/-n4Iw5ihCDt0/UcbyQqJkAuI/AAAAAAAAGT0/AoPt0MOpoI8/s1600/yuri24.jpg", R.raw.audio3));
-
-
-        adapter = new MusicCustomAdapter(musicModelList, getContext());
+        //adapter = new MusicCustomAdapter(songList, getContext());
         rvOldMusic.setAdapter(adapter);
-        adapter.setOnClickListener(this);
+
+//        adapter.setOnClickListener(this);
 
     }
 
-    //send data to activity
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        Activity activity;
-        if (context instanceof Activity) {
-            activity = (Activity) context;
-            onPassData = (OnPassData) activity;
-        }
-    }
 
     @Override
     public void onClickView(int position, View view) {
-        musicModel = musicModelList.get(position);
+        songRespones = songList.get(position);
         PopupMenu popupMenu = new PopupMenu(getContext(), view);
         popupMenu.inflate(R.menu.add_favorite);
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -105,28 +87,38 @@ public class SubFragmentOldMusic extends Fragment implements OnClickListener {
     }
 
     @Override
-    public void onItemClick(List<MusicModel> musicModelList, int position) {
-        sendData(musicModelList, position);
+    public void onItemClick(List<SongRespones> songList, int postion) {
 
     }
 
+
+
+
 //    //send data to activity
 //    @Override
-//    public void onItemClick(int postion) {
-//        sendData(musicModelList, postion);
+//    public void onAttach(Context context) {
+//        super.onAttach(context);
+//        Activity activity;
+//        if (context instanceof Activity) {
+//            activity = (Activity) context;
+//            onPassData = (OnPassData) activity;
+//        }
+//    }
+//    @Override
+//    public void onItemClick(List<SongRespones> songList, int position) {
+//        sendData(songList, position);
 //
+//    }
+
+
+//    //send data to activity using calback interface
+//    public void sendData(List<SongRespones> songList, int postion) {
+//        onPassData.onPassDataToActivity(songList, postion);
 //
 //    }
 
     private void showMessage(String message) {
         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
-
-    //send data to activity using calback interface
-    public void sendData(List<MusicModel> musicModelList, int postion) {
-        onPassData.onPassDataToActivity(musicModelList, postion);
-
-    }
-
 
 }
