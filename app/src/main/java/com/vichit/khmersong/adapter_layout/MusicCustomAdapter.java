@@ -2,6 +2,7 @@ package com.vichit.khmersong.adapter_layout;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +12,9 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import com.vichit.khmersong.R;
 import com.vichit.khmersong.callback.OnClickListener;
-import com.vichit.khmersong.song_respone.SongRespone;
+import com.vichit.khmersong.song_respone.SongRespones;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -20,19 +22,33 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MusicCustomAdapter extends RecyclerView.Adapter<MusicCustomAdapter.MusicViewHolder> {
 
-    //    private List<MusicModel> musicModelList;
-//    private MusicModel musicModel;
-    private List<SongRespone> songList;
-    private SongRespone songRespone;
+    private List<SongRespones> songList;
+    private SongRespones songRespones;
     private OnClickListener onClickListener;
     private Context context;
     private View view;
 
 
-    public MusicCustomAdapter(List<SongRespone> songList, Context context) {
-        this.songList = songList;
-        this.context = context;
+//    public MusicCustomAdapter(List<SongRespones> songList, Context context) {
+//        this.songList = songList;
+//        this.context = context;
+//
+//
+//    }
 
+
+    public MusicCustomAdapter(Context context) {
+        songList = new ArrayList<>();
+        this.context = context;
+    }
+
+    public void addMoreItem(List<SongRespones> songList) {
+        /**
+         * Have reference with constructor.
+         * When call this method
+         */
+        this.songList = songList;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -45,12 +61,12 @@ public class MusicCustomAdapter extends RecyclerView.Adapter<MusicCustomAdapter.
 
     @Override
     public void onBindViewHolder(MusicViewHolder holder, int position) {
-        songRespone = songList.get(position);
+        songRespones = songList.get(position);
 
-        holder.tvSongName.setText(songRespone.getSongName());
-        holder.tvSinger.setText(songRespone.getSingerName());
+        holder.tvSongName.setText(songRespones.getSongName());
+        holder.tvSinger.setText(songRespones.getSingerName());
         Picasso.with(context)
-                .load(songRespone.getSingerImage())
+                .load(songRespones.getSingerImage())
                 .into(holder.ivProfile);
 
     }
@@ -59,6 +75,12 @@ public class MusicCustomAdapter extends RecyclerView.Adapter<MusicCustomAdapter.
     public int getItemCount() {
         return songList.size();
     }
+//
+//    @Override
+//    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+//        onClickListener = (OnClickListener) recyclerView.getContext();
+//
+//    }
 
     public void setOnClickListener(OnClickListener onClickListener) {
         this.onClickListener = onClickListener;
@@ -89,9 +111,11 @@ public class MusicCustomAdapter extends RecyclerView.Adapter<MusicCustomAdapter.
             switch (v.getId()) {
                 case R.id.ivReorder:
                     onClickListener.onClickView(getAdapterPosition(), v);
+                    Log.e("pppppp", getAdapterPosition() + "");
                     break;
                 case R.id.layoutSong:
                     onClickListener.onItemClick(songList, getAdapterPosition());
+                    break;
 
             }
 

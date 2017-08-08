@@ -2,7 +2,7 @@ package com.vichit.khmersong.song_respone;
 
 import com.google.gson.annotations.SerializedName;
 
-public class SongRespone {
+public class SongRespones {
 
 
     @SerializedName("id")
@@ -84,7 +84,7 @@ public class SongRespone {
 
     @Override
     public String toString() {
-        return "SongRespone{" +
+        return "SongRespones{" +
                 "id='" + id + '\'' +
                 ", songName='" + songName + '\'' +
                 ", songUrl='" + songUrl + '\'' +
