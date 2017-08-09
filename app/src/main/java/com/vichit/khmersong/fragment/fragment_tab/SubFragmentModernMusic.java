@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
@@ -32,12 +33,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class SubFragmentModernMusic extends Fragment implements OnClickListener {
+public class SubFragmentModernMusic extends Fragment implements OnClickListener, SwipeRefreshLayout.OnRefreshListener {
     RecyclerView rvModernSong;
     MusicCustomAdapter adapter;
     SongRespones songRespones;
     OnPassData onPassData;
     List<SongRespones> songList;
+    SwipeRefreshLayout swipeRefreshModernSong;
 
 
     public SubFragmentModernMusic() {
@@ -51,9 +53,14 @@ public class SubFragmentModernMusic extends Fragment implements OnClickListener 
 
         View v = inflater.inflate(R.layout.sub_fragment_modern_music, container, false);
 
+        getActivity().setTitle("ចម្រៀងថ្មីៗ");
+
         rvModernSong = (RecyclerView) v.findViewById(R.id.rvModernMusic);
         rvModernSong.setLayoutManager(new LinearLayoutManager(getContext(),
                 LinearLayoutManager.VERTICAL, false));
+
+        swipeRefreshModernSong = (SwipeRefreshLayout) v.findViewById(R.id.swipeRefreshModernSong);
+        swipeRefreshModernSong.setOnRefreshListener(this);
 
         return v;
     }
@@ -67,6 +74,14 @@ public class SubFragmentModernMusic extends Fragment implements OnClickListener 
         getAllSong();
 
         adapter.setOnClickListener(this);
+    }
+
+    //refresh
+    @Override
+    public void onRefresh() {
+        getAllSong();
+        adapter.notifyDataSetChanged();
+        swipeRefreshModernSong.setRefreshing(false);
     }
 
     private void getAllSong() {
@@ -147,6 +162,7 @@ public class SubFragmentModernMusic extends Fragment implements OnClickListener 
     private void showMessage(String message) {
         Toast.makeText(getContext(), message + "", Toast.LENGTH_SHORT).show();
     }
+
 
 }
 
