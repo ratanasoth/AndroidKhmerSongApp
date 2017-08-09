@@ -63,8 +63,8 @@ public class MusicCustomAdapter extends RecyclerView.Adapter<MusicCustomAdapter.
     public void onBindViewHolder(MusicViewHolder holder, int position) {
         songRespones = songList.get(position);
 
-        holder.tvSongName.setText(songRespones.getSongName());
-        holder.tvSinger.setText(songRespones.getSingerName());
+        holder.tvSongName.setText("បទ៖ " + songRespones.getSongName());
+        holder.tvSinger.setText("ច្រៀងដោយ៖ " + songRespones.getSingerName());
         Picasso.with(context)
                 .load(songRespones.getSingerImage())
                 .into(holder.ivProfile);
@@ -75,12 +75,6 @@ public class MusicCustomAdapter extends RecyclerView.Adapter<MusicCustomAdapter.
     public int getItemCount() {
         return songList.size();
     }
-//
-//    @Override
-//    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
-//        onClickListener = (OnClickListener) recyclerView.getContext();
-//
-//    }
 
     public void setOnClickListener(OnClickListener onClickListener) {
         this.onClickListener = onClickListener;

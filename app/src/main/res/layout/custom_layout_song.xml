@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/layoutSong"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@color/colorWhite"
-    android:backgroundTint="#456399">
+    android:background="@color/colorWhite">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/ivProfile"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginBottom="5dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
@@ -43,24 +39,14 @@
         android:text="ម្ចាស់ចំនៀង៖ ឆាយ វីរះយុទ្ធ"
         android:textSize="15sp" />
 
-    <TextView
-        android:id="@+id/tvTypeSong"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvSingerName_Music"
-        android:layout_marginBottom="10dp"
-        android:layout_toRightOf="@+id/ivProfile"
-        android:maxLines="1"
-        android:text="បទសម័យ"
-        android:textSize="15sp" />
 
     <ImageView
         android:id="@+id/ivReorder"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_alignBottom="@id/tvSingerName_Music"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentRight="true"
-        android:layout_alignTop="@id/tvSingerName_Music"
+        android:layout_centerInParent="true"
+        android:layout_marginRight="10dp"
         android:src="@drawable/ic_reorder" />
 
 
