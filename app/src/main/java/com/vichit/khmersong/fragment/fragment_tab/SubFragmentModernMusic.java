@@ -32,7 +32,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class SubFragmentModernMusic extends Fragment implements OnClickListener, OnPassData {
+public class SubFragmentModernMusic extends Fragment implements OnClickListener {
     RecyclerView rvModernSong;
     MusicCustomAdapter adapter;
     SongRespones songRespones;
@@ -71,7 +71,7 @@ public class SubFragmentModernMusic extends Fragment implements OnClickListener,
 
     private void getAllSong() {
 
-        SongService songService = ServiceGenerator.createService(SongService.class);
+        final SongService songService = ServiceGenerator.createService(SongService.class);
         Call<List<SongRespones>> call = songService.findAllSong();
         call.enqueue(new Callback<List<SongRespones>>() {
             @Override
@@ -79,6 +79,7 @@ public class SubFragmentModernMusic extends Fragment implements OnClickListener,
                 songList = response.body();
                 adapter.addMoreItem(songList);
                 rvModernSong.setAdapter(adapter);
+                Log.e("ppppp", response.body().toString());
 
             }
 
@@ -140,11 +141,6 @@ public class SubFragmentModernMusic extends Fragment implements OnClickListener,
     public void onItemClick(List<SongRespones> songList, int postion) {
         sendData(songList, postion);
         Log.e("ppppp", "send");
-
-    }
-
-    @Override
-    public void onPassDataToActivity(List<SongRespones> songList, int postion) {
 
     }
 

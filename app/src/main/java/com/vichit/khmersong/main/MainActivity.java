@@ -17,7 +17,7 @@ import com.vichit.khmersong.R;
 import com.vichit.khmersong.callback.OnPassData;
 import com.vichit.khmersong.fragment.main.MainFragmentSong;
 import com.vichit.khmersong.fragment.main.SingerFragment;
-import com.vichit.khmersong.model.MusicModel;
+import com.vichit.khmersong.song_respone.SongRespones;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ArrayList<JcAudio> jcAudiosList;
     JcAudio jcAudio;
     String titleName;
-    int pathUrl;
+    String pathUrl;
 
 
     @Override
@@ -112,23 +112,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     //get data from old fragments
     @Override
-    public void onPassDataToActivity(List<MusicModel> musicModelList, int position) {
+    public void onPassDataToActivity(List<SongRespones> songList, int position) {
 
-        if (musicModelList != null) {
+        if (songList != null) {
             jcAudiosList = new ArrayList<>();
+            for (SongRespones m : songList) {
 
-            for (MusicModel m : musicModelList) {
-
-                titleName = m.getTitleName();
-                pathUrl = m.getPathUrl();
-
-                jcAudiosList.add(JcAudio.createFromRaw(titleName, pathUrl));
-
+                titleName = m.getSongName();
+                pathUrl = m.getSongUrl();
+                jcAudiosList.add(JcAudio.createFromURL(titleName, pathUrl));
             }
-
-
-            //
-            //jcPlayer.playAudio(jcAudiosList.get(position));
+            jcPlayer.playAudio(jcAudiosList.get(position));
+            jcAudiosList.clear();
 
 
             //get only song
@@ -158,6 +153,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onCompletedAudio() {
+        jcAudiosList.clear();
 
     }
 
