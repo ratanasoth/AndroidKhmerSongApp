@@ -60,7 +60,7 @@ public class SubFragmentModernMusic extends Fragment implements OnClickListener,
                 LinearLayoutManager.VERTICAL, false));
 
         swipeRefreshModernSong = (SwipeRefreshLayout) v.findViewById(R.id.swipeRefreshModernSong);
-        swipeRefreshModernSong.setOnRefreshListener(this);
+
 
         return v;
     }
@@ -74,6 +74,7 @@ public class SubFragmentModernMusic extends Fragment implements OnClickListener,
         getAllSong();
 
         adapter.setOnClickListener(this);
+        swipeRefreshModernSong.setOnRefreshListener(this);
     }
 
     //refresh
@@ -94,13 +95,11 @@ public class SubFragmentModernMusic extends Fragment implements OnClickListener,
                 songList = response.body();
                 adapter.addMoreItem(songList);
                 rvModernSong.setAdapter(adapter);
-                Log.e("ppppp", response.body().toString());
 
             }
 
             @Override
             public void onFailure(Call<List<SongRespones>> call, Throwable t) {
-                Log.e("pppppp", "onFailure");
                 t.printStackTrace();
             }
         });
@@ -155,7 +154,6 @@ public class SubFragmentModernMusic extends Fragment implements OnClickListener,
     @Override
     public void onItemClick(List<SongRespones> songList, int postion) {
         sendData(songList, postion);
-        Log.e("ppppp", "send");
 
     }
 

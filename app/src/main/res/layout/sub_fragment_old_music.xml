@@ -4,9 +4,16 @@
     android:layout_height="wrap_content"
     tools:context="com.vichit.khmersong.fragment.fragment_tab.SubFragmentOldMusic">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvOldMusic"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshOldSong"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvOldMusic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </FrameLayout>

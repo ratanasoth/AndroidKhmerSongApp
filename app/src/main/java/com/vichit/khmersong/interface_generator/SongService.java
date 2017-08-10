@@ -16,5 +16,11 @@ public interface SongService {
     @GET("modern.php")
     Call<List<SongRespones>> findAllSong();
 
+    @GET("old.php")
+    Call<List<SongRespones>> findAllOldSong();
+
+    @GET("singer.php")
+    Call<List<SongRespones>> findSinger();
+
 
 }

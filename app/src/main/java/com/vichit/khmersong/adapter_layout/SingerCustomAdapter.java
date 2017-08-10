@@ -10,8 +10,9 @@ import android.widget.TextView;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.squareup.picasso.Picasso;
 import com.vichit.khmersong.R;
-import com.vichit.khmersong.model.MusicModel;
+import com.vichit.khmersong.song_respone.SongRespones;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,13 +21,23 @@ import java.util.List;
 
 public class SingerCustomAdapter extends RecyclerView.Adapter<SingerCustomAdapter.SingerViewHolder> {
 
-    List<MusicModel> musicModelList;
-    MusicModel musicModel;
+    List<SongRespones> songList;
+    SongRespones songRespones;
     Context context;
 
-    public SingerCustomAdapter(List<MusicModel> musicModelList, Context context) {
-        this.musicModelList = musicModelList;
+//    public SingerCustomAdapter(List<MusicModel> musicModelList, Context context) {
+//        this.musicModelList = musicModelList;
+//        this.context = context;
+//    }
+
+
+    public SingerCustomAdapter(Context context) {
+        songList = new ArrayList<>();
         this.context = context;
+    }
+
+    public void addMoreSong(List<SongRespones> songList) {
+        this.songList = songList;
     }
 
     @Override
@@ -41,18 +52,22 @@ public class SingerCustomAdapter extends RecyclerView.Adapter<SingerCustomAdapte
 
     @Override
     public void onBindViewHolder(SingerViewHolder holder, int position) {
-        musicModel = musicModelList.get(position);
+        songRespones = songList.get(position);
+        String getNameSinger = songRespones.getSingerName();
+        String getSinger = songRespones.getSingerImage();
 
-        holder.tvSinger.setText(musicModel.getSingerName());
+
+
+            holder.tvSinger.setText(songRespones.getSingerName());
         Picasso.with(context)
-                .load(musicModel.getProfile())
+                .load(songRespones.getSingerImage())
                 .into(holder.ivSinger);
 
     }
 
     @Override
     public int getItemCount() {
-        return musicModelList.size();
+        return songList.size();
     }
 
 
