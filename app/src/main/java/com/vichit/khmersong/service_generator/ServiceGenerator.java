@@ -15,7 +15,7 @@ public class ServiceGenerator {
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
     private static Retrofit.Builder builder = new Retrofit.Builder()
-            .baseUrl("http://10.0.3.2/khmersongapi/")
+            .baseUrl("http://10.0.3.2:8000/")
             .addConverterFactory(GsonConverterFactory.create());
 
     public static <S> S createService(Class<S> serviceClass) {
@@ -24,6 +24,7 @@ public class ServiceGenerator {
             public Response intercept(Chain chain) throws IOException {
                 okhttp3.Request original = chain.request();
                 Request.Builder requestBuilder = original.newBuilder()
+                        .header("Authorization", "base64:lJgPPPOBJopogTeHfwtNxxm7w+Wsg1L2cv60+A+3vqk=")
                         .header("Accept", "application/json");
                 Request request = requestBuilder.build();
                 return chain.proceed(request);

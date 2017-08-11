@@ -2,8 +2,6 @@ package com.vichit.khmersong.interface_generator;
 
 import com.vichit.khmersong.song_respone.SongRespones;
 
-import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.http.GET;
 
@@ -13,14 +11,15 @@ import retrofit2.http.GET;
 
 public interface SongService {
 
-    @GET("modern.php")
-    Call<List<SongRespones>> findAllSong();
 
-    @GET("old.php")
-    Call<List<SongRespones>> findAllOldSong();
+    @GET("/api/v1/categories/2/songs")
+    Call<SongRespones> findAllModernSong();
 
-    @GET("singer.php")
-    Call<List<SongRespones>> findSinger();
+    @GET("api/v1/categories/1/songs")
+    Call<SongRespones> findAllOldSong();
+//
+//    @GET("singer.php")
+//    Call<List<SongRespones>> findSinger();
 
 
 }

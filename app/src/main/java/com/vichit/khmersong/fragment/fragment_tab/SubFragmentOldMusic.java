@@ -34,7 +34,7 @@ import retrofit2.Response;
 public class SubFragmentOldMusic extends Fragment implements OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     RecyclerView rvOldMusic;
-    List<SongRespones> songList;
+    List<SongRespones.Songs> songList;
     MusicCustomAdapter adapter;
     OnPassData onPassData;
     SongRespones songRespones;
@@ -81,27 +81,25 @@ public class SubFragmentOldMusic extends Fragment implements OnClickListener, Sw
 
     private void getAllOldSong() {
         songService = ServiceGenerator.createService(SongService.class);
-        Call<List<SongRespones>> callAllOldSong = songService.findAllOldSong();
-        callAllOldSong.enqueue(new Callback<List<SongRespones>>() {
+        Call<SongRespones> callAllOldSong = songService.findAllOldSong();
+        callAllOldSong.enqueue(new Callback<SongRespones>() {
             @Override
-            public void onResponse(Call<List<SongRespones>> call, Response<List<SongRespones>> response) {
-                songList = response.body();
-                adapter.addMoreItem(songList);
+            public void onResponse(Call<SongRespones> call, Response<SongRespones> response) {
+                songRespones = response.body();
+                adapter.addMoreItem(songRespones.getSongs());
                 rvOldMusic.setAdapter(adapter);
-
             }
 
             @Override
-            public void onFailure(Call<List<SongRespones>> call, Throwable t) {
-                t.printStackTrace();
+            public void onFailure(Call<SongRespones> call, Throwable t) {
 
             }
         });
+
     }
 
     @Override
     public void onClickView(int position, View view) {
-        songRespones = songList.get(position);
         PopupMenu popupMenu = new PopupMenu(getContext(), view);
         popupMenu.inflate(R.menu.add_favorite);
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -125,7 +123,7 @@ public class SubFragmentOldMusic extends Fragment implements OnClickListener, Sw
     }
 
     @Override
-    public void onItemClick(List<SongRespones> songList, int postion) {
+    public void onItemClick(List<SongRespones.Songs> songList, int postion) {
         sendData(songList, postion);
 
     }
@@ -142,7 +140,7 @@ public class SubFragmentOldMusic extends Fragment implements OnClickListener, Sw
     }
 
     //send data to activity using calback interface
-    public void sendData(List<SongRespones> songList, int postion) {
+    public void sendData(List<SongRespones.Songs> songList, int postion) {
         onPassData.onPassDataToActivity(songList, postion);
 
     }

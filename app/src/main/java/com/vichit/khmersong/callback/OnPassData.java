@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface OnPassData {
 
-    void onPassDataToActivity(List<SongRespones> songList, int postion);
+    void onPassDataToActivity(List<SongRespones.Songs> songList, int postion);
 
 }

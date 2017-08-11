@@ -22,8 +22,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MusicCustomAdapter extends RecyclerView.Adapter<MusicCustomAdapter.MusicViewHolder> {
 
-    private List<SongRespones> songList;
-    private SongRespones songRespones;
+    List<SongRespones.Songs> songList;
+    SongRespones.Songs songRespones;
     private OnClickListener onClickListener;
     private Context context;
     private View view;
@@ -42,7 +42,7 @@ public class MusicCustomAdapter extends RecyclerView.Adapter<MusicCustomAdapter.
         this.context = context;
     }
 
-    public void addMoreItem(List<SongRespones> songList) {
+    public void addMoreItem(List<SongRespones.Songs> songList) {
         /**
          * Have reference with constructor.
          * When call this method
@@ -64,9 +64,9 @@ public class MusicCustomAdapter extends RecyclerView.Adapter<MusicCustomAdapter.
         songRespones = songList.get(position);
 
         holder.tvSongName.setText("បទ៖ " + songRespones.getSongName());
-        holder.tvSinger.setText("ច្រៀងដោយ៖ " + songRespones.getSingerName());
+        holder.tvSinger.setText("ច្រៀងដោយ៖ " + songRespones.getSinger().getSingerName());
         Picasso.with(context)
-                .load(songRespones.getSingerImage())
+                .load(songRespones.getSinger().getSingerImage())
                 .into(holder.ivProfile);
 
     }

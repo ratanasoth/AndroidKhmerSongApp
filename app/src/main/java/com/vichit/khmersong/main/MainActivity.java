@@ -16,20 +16,19 @@ import com.example.jean.jcplayer.JcPlayerView;
 import com.vichit.khmersong.R;
 import com.vichit.khmersong.callback.OnPassData;
 import com.vichit.khmersong.fragment.main.MainFragmentSong;
-import com.vichit.khmersong.fragment.main.SingerFragment;
 import com.vichit.khmersong.song_respone.SongRespones;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
-        OnPassData, JcPlayerService.JcPlayerServiceListener, JcPlayerService.OnInvalidPathListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, JcPlayerService.JcPlayerServiceListener, JcPlayerService.OnInvalidPathListener, OnPassData {
 
     JcPlayerView jcPlayer;
     ArrayList<JcAudio> jcAudiosList;
-    JcAudio jcAudio;
     String titleName;
     String pathUrl;
+
+    String type = "";
 
 
     @Override
@@ -98,10 +97,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .replace(R.id.contentMain, mainFragmentSong)
                     .commit();
         } else if (id == R.id.nav_singer) {
-            SingerFragment singerFragment = new SingerFragment();
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.contentMain, singerFragment)
-                    .commit();
+//            SingerFragment singerFragment = new SingerFragment();
+//            getSupportFragmentManager().beginTransaction()
+//                    .replace(R.id.contentMain, singerFragment)
+//                    .commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -112,25 +111,47 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     //get data from old fragments
     @Override
-    public void onPassDataToActivity(List<SongRespones> songList, int position) {
+    public void onPassDataToActivity(List<SongRespones.Songs> songList, int position) {
 
-        if (songList != null) {
-            jcAudiosList = new ArrayList<>();
-            for (SongRespones m : songList) {
-
-                titleName = m.getSongName();
+        if (!songList.get(0).getType().getTypeName().equals(type)){
+            type = songList.get(0).getType().getTypeName();
+            jcPlayer.getMyPlaylist().clear();
+            for (SongRespones.Songs m : songList) {
+                titleName = m.getSongName() ;
                 pathUrl = m.getSongUrl();
-                jcAudiosList.add(JcAudio.createFromURL(titleName, pathUrl));
+                jcPlayer.getMyPlaylist().add(JcAudio.createFromURL(titleName, pathUrl));
             }
-            jcPlayer.playAudio(jcAudiosList.get(position));
-            jcAudiosList.clear();
-
-
-            //get only song
-            // jcPlayer.playAudio(JcAudio.createFromRaw(songName, pathUrl));
-
-
         }
+
+        jcPlayer.playAudio(jcPlayer.getMyPlaylist().get(position));
+
+
+        /*if(jcPlayer.getMyPlaylist().isEmpty()){
+            for (SongRespones.Songs m : songList) {
+                titleName = m.getName() ;
+                pathUrl = m.getUrl();
+                jcPlayer.getMyPlaylist().add(JcAudio.createFromURL(titleName, pathUrl));
+            }
+        }
+        jcPlayer.playAudio(jcPlayer.getMyPlaylist().get(position));*/
+
+//        if (songList != null) {
+//            jcAudiosList = new ArrayList<>();
+//            for (SongRespones.Songs m : songList) {
+//
+//                titleName = m.getName() ;
+//                pathUrl = m.getUrl();
+//                jcAudiosList.add(JcAudio.createFromURL(titleName, pathUrl));
+//            }
+//            jcPlayer.playAudio(jcAudiosList.get(position));
+//            jcAudiosList.clear();
+//
+//
+//            //get only song
+//            // jcPlayer.playAudio(JcAudio.createFromRaw(songName, pathUrl));
+//
+//
+//        }
 
     }
 

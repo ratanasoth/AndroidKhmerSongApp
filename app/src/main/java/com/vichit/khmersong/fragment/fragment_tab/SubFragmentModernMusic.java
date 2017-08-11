@@ -38,7 +38,7 @@ public class SubFragmentModernMusic extends Fragment implements OnClickListener,
     MusicCustomAdapter adapter;
     SongRespones songRespones;
     OnPassData onPassData;
-    List<SongRespones> songList;
+    List<SongRespones.Songs> songList;
     SwipeRefreshLayout swipeRefreshModernSong;
 
 
@@ -87,20 +87,22 @@ public class SubFragmentModernMusic extends Fragment implements OnClickListener,
 
     private void getAllSong() {
 
-        final SongService songService = ServiceGenerator.createService(SongService.class);
-        Call<List<SongRespones>> call = songService.findAllSong();
-        call.enqueue(new Callback<List<SongRespones>>() {
-            @Override
-            public void onResponse(Call<List<SongRespones>> call, Response<List<SongRespones>> response) {
-                songList = response.body();
-                adapter.addMoreItem(songList);
-                rvModernSong.setAdapter(adapter);
 
+        final SongService songService = ServiceGenerator.createService(SongService.class);
+        Call<SongRespones> callAllModernSong = songService.findAllModernSong();
+        callAllModernSong.enqueue(new Callback<SongRespones>() {
+            @Override
+            public void onResponse(Call<SongRespones> call, Response<SongRespones> response) {
+                songRespones = response.body();
+                adapter.addMoreItem(songRespones.getSongs());
+                rvModernSong.setAdapter(adapter);
             }
 
             @Override
-            public void onFailure(Call<List<SongRespones>> call, Throwable t) {
+            public void onFailure(Call<SongRespones> call, Throwable t) {
                 t.printStackTrace();
+                Log.e("ppppp", "onFailure");
+
             }
         });
 
@@ -109,8 +111,6 @@ public class SubFragmentModernMusic extends Fragment implements OnClickListener,
 
     @Override
     public void onClickView(int position, View view) {
-        Log.e("ppppp", "onClickView");
-        songRespones = songList.get(position);
         PopupMenu popupMenu = new PopupMenu(getContext(), view);
         popupMenu.inflate(R.menu.add_favorite);
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -146,13 +146,13 @@ public class SubFragmentModernMusic extends Fragment implements OnClickListener,
     }
 
     //send data to activity
-    public void sendData(List<SongRespones> songList, int postion) {
+    public void sendData(List<SongRespones.Songs> songList, int postion) {
         onPassData.onPassDataToActivity(songList, postion);
 
     }
 
     @Override
-    public void onItemClick(List<SongRespones> songList, int postion) {
+    public void onItemClick(List<SongRespones.Songs> songList, int postion) {
         sendData(songList, postion);
 
     }
@@ -160,8 +160,6 @@ public class SubFragmentModernMusic extends Fragment implements OnClickListener,
     private void showMessage(String message) {
         Toast.makeText(getContext(), message + "", Toast.LENGTH_SHORT).show();
     }
-
-
 }
 
 

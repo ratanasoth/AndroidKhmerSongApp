@@ -4,7 +4,6 @@
     android:id="@+id/fragmentMain"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorBlack"
     android:layout_marginBottom="120dp"
     android:orientation="vertical">
 
@@ -18,8 +17,7 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#999" />
+        android:layout_height="wrap_content" />
 
 
 </LinearLayout>
