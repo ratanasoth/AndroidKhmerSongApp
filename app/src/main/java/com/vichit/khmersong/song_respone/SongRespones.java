@@ -74,6 +74,15 @@ public class SongRespones {
         public void setImage(String image) {
             this.singerImage = image;
         }
+
+        @Override
+        public String toString() {
+            return "Singer{" +
+                    "id=" + id +
+                    ", singerName='" + singerName + '\'' +
+                    ", singerImage='" + singerImage + '\'' +
+                    '}';
+        }
     }
 
     public static class Type {
@@ -207,6 +216,12 @@ public class SongRespones {
         }
     }
 
+    @Override
+    public String toString() {
+        return "SongRespones{" +
+                "songs=" + songs +
+                '}';
+    }
 }
 //
 //

@@ -2,7 +2,6 @@ package com.vichit.khmersong.adapter_layout;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,13 +27,6 @@ public class MusicCustomAdapter extends RecyclerView.Adapter<MusicCustomAdapter.
     private Context context;
     private View view;
 
-
-//    public MusicCustomAdapter(List<SongRespones> songList, Context context) {
-//        this.songList = songList;
-//        this.context = context;
-//
-//
-//    }
 
 
     public MusicCustomAdapter(Context context) {
@@ -105,7 +97,6 @@ public class MusicCustomAdapter extends RecyclerView.Adapter<MusicCustomAdapter.
             switch (v.getId()) {
                 case R.id.ivReorder:
                     onClickListener.onClickView(getAdapterPosition(), v);
-                    Log.e("pppppp", getAdapterPosition() + "");
                     break;
                 case R.id.layoutSong:
                     onClickListener.onItemClick(songList, getAdapterPosition());

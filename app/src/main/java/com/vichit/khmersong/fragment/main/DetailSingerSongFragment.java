@@ -51,6 +51,7 @@ public class DetailSingerSongFragment extends Fragment implements SwipeRefreshLa
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        getActivity().setTitle("តារាចម្រៀង");
         View view = inflater.inflate(R.layout.fragment_detail_singer_song, container, false);
 
         rvSongBySinger = (RecyclerView) view.findViewById(R.id.rvDetailSingerSong);

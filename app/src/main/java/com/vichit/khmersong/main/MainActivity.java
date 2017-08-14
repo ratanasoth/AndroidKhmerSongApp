@@ -16,6 +16,7 @@ import com.example.jean.jcplayer.JcPlayerView;
 import com.vichit.khmersong.R;
 import com.vichit.khmersong.callback.OnPassData;
 import com.vichit.khmersong.fragment.main.MainFragmentSong;
+import com.vichit.khmersong.fragment.main.SingerFragment;
 import com.vichit.khmersong.song_respone.SongRespones;
 
 import java.util.ArrayList;
@@ -27,7 +28,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ArrayList<JcAudio> jcAudiosList;
     String titleName;
     String pathUrl;
-
     String type = "";
 
 
@@ -97,10 +97,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .replace(R.id.contentMain, mainFragmentSong)
                     .commit();
         } else if (id == R.id.nav_singer) {
-//            SingerFragment singerFragment = new SingerFragment();
-//            getSupportFragmentManager().beginTransaction()
-//                    .replace(R.id.contentMain, singerFragment)
-//                    .commit();
+            SingerFragment singerFragment = new SingerFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.contentMain, singerFragment)
+                    .commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
