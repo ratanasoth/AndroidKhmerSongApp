@@ -1,4 +1,4 @@
-package com.vichit.khmersong.fragment.main;
+package com.vichit.khmersong.fragment.detail_fragment;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,6 +9,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -101,6 +102,7 @@ public class DetailSingerSongFragment extends Fragment implements SwipeRefreshLa
                         selectedSingersSongs.add(songs);
                     }
                 }
+                Log.e("ppppp", selectedSingersSongs.size() + "");
                 adapter.addMoreItem(selectedSingersSongs);
                 rvSongBySinger.setAdapter(adapter);
 
@@ -127,9 +129,7 @@ public class DetailSingerSongFragment extends Fragment implements SwipeRefreshLa
                     case R.id.popup_Favorite:
                         showMessage("Favorite");
                         break;
-                    case R.id.popup_cencel:
-                        showMessage("Cancel");
-                        break;
+
                 }
 
                 return false;
@@ -155,12 +155,12 @@ public class DetailSingerSongFragment extends Fragment implements SwipeRefreshLa
     //click item
     @Override
     public void onItemClick(List<SongRespones.Songs> songList, int postion) {
-        sendData(songList, postion);
+        sendData(selectedSingersSongs, postion);
 
     }
 
     public void sendData(List<SongRespones.Songs> songList, int postion) {
-        onPassData.onPassDataToActivity(songList, postion);
+        onPassData.onPassDataToActivity(selectedSingersSongs, postion);
 
     }
 

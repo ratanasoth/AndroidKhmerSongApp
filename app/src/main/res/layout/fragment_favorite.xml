@@ -3,21 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginBottom="120dp"
-    tools:context=".fragment.detail_fragment.DetailSingerSongFragment">
+    tools:context="com.vichit.khmersong.fragment.main.FavoriteFragment">
 
     <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipeRefreshDetailSinger"
+        android:id="@+id/swipeRefreshFavorite"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/rvDetailSingerSong"
+            android:id="@+id/rvFavorite"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </android.support.v7.widget.RecyclerView>
-
-
+            android:layout_height="match_parent" />
 
     </android.support.v4.widget.SwipeRefreshLayout>
+
 </FrameLayout>

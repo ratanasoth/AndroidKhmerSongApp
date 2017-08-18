@@ -8,13 +8,10 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.vichit.khmersong.R;
 import com.vichit.khmersong.adapter_layout.MusicCustomAdapter;
@@ -92,6 +89,7 @@ public class SubFragmentOldMusic extends Fragment implements OnClickListener, Sw
 
             @Override
             public void onFailure(Call<SongRespones> call, Throwable t) {
+                t.printStackTrace();
 
             }
         });
@@ -100,25 +98,8 @@ public class SubFragmentOldMusic extends Fragment implements OnClickListener, Sw
 
     @Override
     public void onClickView(int position, View view) {
-        PopupMenu popupMenu = new PopupMenu(getContext(), view);
-        popupMenu.inflate(R.menu.add_favorite);
-        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.popup_Favorite:
-                        showMessage("Favorite");
-                        break;
-                    case R.id.popup_cencel:
-                        showMessage("Cancel");
-                        break;
-                }
-
-                return false;
-            }
-
-        });
-        popupMenu.show();
+        songList = songRespones.getSongs();
+        SubFragmentModernMusic.actionManu(position, songList, view, getContext());
 
     }
 
@@ -143,10 +124,6 @@ public class SubFragmentOldMusic extends Fragment implements OnClickListener, Sw
     public void sendData(List<SongRespones.Songs> songList, int postion) {
         onPassData.onPassDataToActivity(songList, postion);
 
-    }
-
-    private void showMessage(String message) {
-        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
 

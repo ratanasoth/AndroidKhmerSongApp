@@ -10,10 +10,7 @@
             android:id="@+id/nav_singer"
             android:icon="@drawable/ic_singer"
             android:title="តារាចម្រៀង" />
-        <item
-            android:id="@+id/nav_originalSong"
-            android:icon="@drawable/ic_original"
-            android:title="ចម្រៀង Original" />
+
     </group>
 
     <group android:checkableBehavior="single">

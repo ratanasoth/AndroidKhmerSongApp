@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layoutSong"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite">
+
+    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/ivProfile_Favorite"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/khem"
+        app:civ_border_color="@color/colorBlack"
+        app:civ_border_width="1dp" />
+
+    <TextView
+        android:id="@+id/tvNameSong_Favorite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/ivProfile_Favorite"
+        android:layout_marginBottom="10dp"
+        android:layout_toRightOf="@id/ivProfile_Favorite"
+        android:maxLines="1"
+        android:text="បទ៖ បងពីមុនឆ្កួតបាត់ហើយ"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/tvSingerName_Favorite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvNameSong_Favorite"
+        android:layout_marginBottom="10dp"
+        android:layout_toRightOf="@+id/ivProfile_Favorite"
+        android:maxLines="1"
+        android:text="ម្ចាស់ចំនៀង៖ ឆាយ វីរះយុទ្ធ"
+        android:textSize="15sp" />
+
+
+    <ImageView
+        android:id="@+id/ivReorder_Favorite"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/ic_hearts" />
+
+
+</RelativeLayout>

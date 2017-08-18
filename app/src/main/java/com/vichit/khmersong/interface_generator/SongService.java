@@ -21,6 +21,9 @@ public interface SongService {
     @GET("api/v1/songs")
     Call<SongRespones> findAllSongBySinger();
 
+    @GET("api/v1/types/1/songs")
+    Call<SongRespones> findAllOriginalSong();
+
 
 
 

@@ -106,6 +106,14 @@ public class SongRespones {
         public void setType(String type) {
             this.typeName = type;
         }
+
+        @Override
+        public String toString() {
+            return "Type{" +
+                    "id=" + id +
+                    ", typeName='" + typeName + '\'' +
+                    '}';
+        }
     }
 
     public static class Songs {
@@ -115,12 +123,6 @@ public class SongRespones {
         private String SongName;
         @SerializedName("url")
         private String songUrl;
-        @SerializedName("categories_id")
-        private int categoriesId;
-        @SerializedName("singers_id")
-        private int singersId;
-        @SerializedName("types_id")
-        private int typesId;
         @SerializedName("category")
         private Category category;
         @SerializedName("singer")
@@ -152,29 +154,6 @@ public class SongRespones {
             this.songUrl = url;
         }
 
-        public int getCategoriesId() {
-            return categoriesId;
-        }
-
-        public void setCategoriesId(int categoriesId) {
-            this.categoriesId = categoriesId;
-        }
-
-        public int getSingersId() {
-            return singersId;
-        }
-
-        public void setSingersId(int singersId) {
-            this.singersId = singersId;
-        }
-
-        public int getTypesId() {
-            return typesId;
-        }
-
-        public void setTypesId(int typesId) {
-            this.typesId = typesId;
-        }
 
         public Category getCategory() {
             return category;
@@ -206,10 +185,6 @@ public class SongRespones {
                     "id=" + id +
                     ", name='" + name + '\'' +
                     ", url='" + songUrl + '\'' +
-                    ", categoriesId=" + categoriesId +
-                    ", singersId=" + singersId +
-                    ", typesId=" + typesId +
-                    ", category=" + category +
                     ", singer=" + singer +
                     ", type=" + type +
                     '}';

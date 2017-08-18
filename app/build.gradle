@@ -25,12 +25,6 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-
-
-
-
-
-
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
@@ -42,5 +36,6 @@ dependencies {
     compile 'io.github.jeancsanchez.jcplayer:jcplayer:2.6.0-alpha'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.makeramen:roundedimageview:2.3.0'
+    compile 'com.google.code.gson:gson:2.8.1'
     testCompile 'junit:junit:4.12'
 }

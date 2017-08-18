@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import com.vichit.khmersong.R;
 import com.vichit.khmersong.adapter_layout.SingerCustomAdapter;
 import com.vichit.khmersong.callback.OnClickListener;
+import com.vichit.khmersong.fragment.detail_fragment.DetailSingerSongFragment;
 import com.vichit.khmersong.interface_generator.SongService;
 import com.vichit.khmersong.service_generator.ServiceGenerator;
 import com.vichit.khmersong.song_respone.SingerResponse;
@@ -50,6 +51,7 @@ public class SingerFragment extends Fragment implements SwipeRefreshLayout.OnRef
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        getActivity().setTitle("តារាចម្រៀង");
 
         View view = inflater.inflate(R.layout.fragment_singer, container, false);
         rvSinger = (RecyclerView) view.findViewById(R.id.rvSinger);
@@ -110,6 +112,7 @@ public class SingerFragment extends Fragment implements SwipeRefreshLayout.OnRef
         DetailSingerSongFragment detailSingerSongFragment = new DetailSingerSongFragment();
         Bundle bundle = new Bundle();
         bundle.putInt("key", singerResponse.getSingerList().get(position).getId());
+        Log.e("ppppp", singerResponse.getSingerList().get(position).getId() + "");
         //bundle.putInt("key", position);
         detailSingerSongFragment.setArguments(bundle);
 

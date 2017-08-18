@@ -3,6 +3,7 @@ package com.vichit.khmersong.fragment.fragment_tab;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,21 +11,24 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.vichit.khmersong.R;
 import com.vichit.khmersong.adapter_layout.MusicCustomAdapter;
 import com.vichit.khmersong.callback.OnClickListener;
 import com.vichit.khmersong.callback.OnPassData;
+import com.vichit.khmersong.constant_key.SharePreferenceKey;
 import com.vichit.khmersong.interface_generator.SongService;
 import com.vichit.khmersong.service_generator.ServiceGenerator;
 import com.vichit.khmersong.song_respone.SongRespones;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +44,7 @@ public class SubFragmentModernMusic extends Fragment implements OnClickListener,
     OnPassData onPassData;
     List<SongRespones.Songs> songList;
     SwipeRefreshLayout swipeRefreshModernSong;
+    SongService songService;
 
 
     public SubFragmentModernMusic() {
@@ -48,19 +53,14 @@ public class SubFragmentModernMusic extends Fragment implements OnClickListener,
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.sub_fragment_modern_music, container, false);
-
         getActivity().setTitle("ចម្រៀងថ្មីៗ");
 
         rvModernSong = (RecyclerView) v.findViewById(R.id.rvModernMusic);
-        rvModernSong.setLayoutManager(new LinearLayoutManager(getContext(),
-                LinearLayoutManager.VERTICAL, false));
+        rvModernSong.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 
         swipeRefreshModernSong = (SwipeRefreshLayout) v.findViewById(R.id.swipeRefreshModernSong);
-
 
         return v;
     }
@@ -85,54 +85,14 @@ public class SubFragmentModernMusic extends Fragment implements OnClickListener,
         swipeRefreshModernSong.setRefreshing(false);
     }
 
-    private void getAllSong() {
-
-
-        final SongService songService = ServiceGenerator.createService(SongService.class);
-        Call<SongRespones> callAllModernSong = songService.findAllModernSong();
-        callAllModernSong.enqueue(new Callback<SongRespones>() {
-            @Override
-            public void onResponse(Call<SongRespones> call, Response<SongRespones> response) {
-                songRespones = response.body();
-                adapter.addMoreItem(songRespones.getSongs());
-                rvModernSong.setAdapter(adapter);
-            }
-
-            @Override
-            public void onFailure(Call<SongRespones> call, Throwable t) {
-                t.printStackTrace();
-                Log.e("ppppp", "onFailure");
-
-            }
-        });
-
-
-    }
 
     @Override
-    public void onClickView(int position, View view) {
-        PopupMenu popupMenu = new PopupMenu(getContext(), view);
-        popupMenu.inflate(R.menu.add_favorite);
-        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.popup_Favorite:
-                        showMessage("Favorite");
-                        break;
-                    case R.id.popup_cencel:
-                        showMessage("Cancel");
-                        break;
-                }
+    public void onClickView(final int position, View view) {
+        songList = songRespones.getSongs();
+        actionManu(position, songList, view, getContext());
 
-                return false;
-            }
-
-        });
-        popupMenu.show();
 
     }
-
 
     //send data to activity
     @Override
@@ -157,23 +117,110 @@ public class SubFragmentModernMusic extends Fragment implements OnClickListener,
 
     }
 
-    private void showMessage(String message) {
-        Toast.makeText(getContext(), message + "", Toast.LENGTH_SHORT).show();
+    //response all song
+    private void getAllSong() {
+        songService = ServiceGenerator.createService(SongService.class);
+        Call<SongRespones> callAllModernSong = songService.findAllModernSong();
+        callAllModernSong.enqueue(new Callback<SongRespones>() {
+            @Override
+            public void onResponse(Call<SongRespones> call, Response<SongRespones> response) {
+                songRespones = response.body();
+                adapter.addMoreItem(songRespones.getSongs());
+                rvModernSong.setAdapter(adapter);
+            }
+
+            @Override
+            public void onFailure(Call<SongRespones> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
     }
+
+    //static method that save data into share preference.
+    public static void actionManu(final int position, final List<SongRespones.Songs> songList, View view, final Context context) {
+
+        PopupMenu popupMenu = new PopupMenu(context, view);
+
+        final SharedPreferences sharedPreferences = context.getSharedPreferences(
+                SharePreferenceKey.SONG_LIST, Context.MODE_PRIVATE);
+
+        String getSongToJson = sharedPreferences.getString(SharePreferenceKey.SONG_LIST, "[]");
+
+        Type type = new TypeToken<List<SongRespones.Songs>>() {}.getType();
+        final List<SongRespones.Songs> songSharePreference = new Gson().fromJson(getSongToJson, type);
+
+        if (isSongExist(songSharePreference, songList.get(position))) {
+
+            popupMenu.inflate(R.menu.remove_favorite);
+
+        } else {
+            popupMenu.inflate(R.menu.add_favorite);
+        }
+
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.popup_Favorite:
+
+                        songSharePreference.add(songList.get(position));
+                        showMessage("អ្នកបានរក្សាទុក", context);
+                        break;
+                    case R.id.popup_remove_favorite:
+
+                        if (isDeleted(songSharePreference, songList.get(position))) {
+                            showMessage("បទនេះត្រូវបានលុបចេញពីបញ្ជី", context);
+                        } else {
+                            showMessage("fucking delete", context);
+                        }
+                        break;
+                }
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                String songJson = new Gson().toJson(songSharePreference);
+
+                editor.putString(SharePreferenceKey.SONG_LIST, songJson);
+                editor.apply();
+
+                return false;
+            }
+        });
+        popupMenu.show();
+    }
+
+    /*
+    comparing song response with share preference to show manu.
+    if song that responded have in share preference, it's show menu remove_favorite
+    but if song that responded don't have in share preference, it's show menu add_favorite
+     */
+    private static boolean isSongExist(List<SongRespones.Songs> songList, SongRespones.Songs song) {
+        for (SongRespones.Songs s : songList) {
+            if (s.getId() == song.getId()) {
+
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /*
+    if song that responded have in share preference, it's will delete when we click.
+    but if song that responded don't have in share preference, it's cannot delete.
+     */
+    public static boolean isDeleted(List<SongRespones.Songs> songList, SongRespones.Songs song) {
+        for (SongRespones.Songs s : songList) {
+            if (s.getId() == song.getId()) {
+                songList.remove(s);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static void showMessage(String message, Context context) {
+        Toast.makeText(context, message + "", Toast.LENGTH_SHORT).show();
+    }
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

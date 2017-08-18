@@ -15,6 +15,7 @@ import com.example.jean.jcplayer.JcPlayerService;
 import com.example.jean.jcplayer.JcPlayerView;
 import com.vichit.khmersong.R;
 import com.vichit.khmersong.callback.OnPassData;
+import com.vichit.khmersong.fragment.main.FavoriteFragment;
 import com.vichit.khmersong.fragment.main.MainFragmentSong;
 import com.vichit.khmersong.fragment.main.SingerFragment;
 import com.vichit.khmersong.song_respone.SongRespones;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     String titleName;
     String pathUrl;
     String type = "";
+    String category = "";
 
 
     @Override
@@ -101,6 +103,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.contentMain, singerFragment)
                     .commit();
+        } else if (id == R.id.nav_saveSong) {
+            FavoriteFragment favoriteFragment = new FavoriteFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.contentMain, favoriteFragment)
+                    .commit();
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -113,27 +121,40 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onPassDataToActivity(List<SongRespones.Songs> songList, int position) {
 
-        if (!songList.get(0).getType().getTypeName().equals(type)){
-            type = songList.get(0).getType().getTypeName();
-            jcPlayer.getMyPlaylist().clear();
-            for (SongRespones.Songs m : songList) {
-                titleName = m.getSongName() ;
-                pathUrl = m.getSongUrl();
-                jcPlayer.getMyPlaylist().add(JcAudio.createFromURL(titleName, pathUrl));
-            }
+//        if (!songList.get(0).getCategory().getName().equals(category)) {
+        category = songList.get(0).getCategory().getName();
+        jcPlayer.getMyPlaylist().clear();
+        for (SongRespones.Songs m : songList) {
+            titleName = m.getSongName();
+            pathUrl = m.getSongUrl();
+            jcPlayer.getMyPlaylist().add(JcAudio.createFromURL(titleName, pathUrl));
         }
 
         jcPlayer.playAudio(jcPlayer.getMyPlaylist().get(position));
 
 
-        /*if(jcPlayer.getMyPlaylist().isEmpty()){
-            for (SongRespones.Songs m : songList) {
-                titleName = m.getName() ;
-                pathUrl = m.getUrl();
-                jcPlayer.getMyPlaylist().add(JcAudio.createFromURL(titleName, pathUrl));
-            }
-        }
-        jcPlayer.playAudio(jcPlayer.getMyPlaylist().get(position));*/
+//        if (!songList.get(0).getType().getTypeName().equals(type)) {
+//            type = songList.get(0).getType().getTypeName();
+//            Log.e("ppppp type", type);
+//            jcPlayer.getMyPlaylist().clear();
+//            for (SongRespones.Songs m : songList) {
+//                titleName = m.getSongName();
+//                pathUrl = m.getSongUrl();
+//                jcPlayer.getMyPlaylist().add(JcAudio.createFromURL(titleName, pathUrl));
+//            }
+//        }
+//        jcPlayer.playAudio(jcPlayer.getMyPlaylist().get(position));
+
+
+//        if (jcPlayer.getMyPlaylist().isEmpty()) {
+//            for (SongRespones.Songs m : songList) {
+//                titleName = m.getSongName();
+//                pathUrl = m.getSongUrl();
+//                jcPlayer.getMyPlaylist().add(JcAudio.createFromURL(titleName, pathUrl));
+//            }
+//        }
+//        jcPlayer.playAudio(jcPlayer.getMyPlaylist().get(position));
+
 
 //        if (songList != null) {
 //            jcAudiosList = new ArrayList<>();
@@ -175,6 +196,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onCompletedAudio() {
         jcAudiosList.clear();
+
 
     }
 
