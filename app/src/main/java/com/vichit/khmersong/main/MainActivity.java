@@ -1,5 +1,8 @@
 package com.vichit.khmersong.main;
 
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,6 +20,7 @@ import com.vichit.khmersong.R;
 import com.vichit.khmersong.callback.OnPassData;
 import com.vichit.khmersong.fragment.main.FavoriteFragment;
 import com.vichit.khmersong.fragment.main.MainFragmentSong;
+import com.vichit.khmersong.fragment.main.RequestSongFragment;
 import com.vichit.khmersong.fragment.main.SingerFragment;
 import com.vichit.khmersong.song_respone.SongRespones;
 
@@ -29,7 +33,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ArrayList<JcAudio> jcAudiosList;
     String titleName;
     String pathUrl;
-    String type = "";
     String category = "";
 
 
@@ -109,6 +112,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .replace(R.id.contentMain, favoriteFragment)
                     .commit();
 
+        } else if (id == R.id.nav_sendSong) {
+            RequestSongFragment requestSongFragment = new RequestSongFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.contentMain, requestSongFragment)
+                    .commit();
+
+        } else if (id == R.id.nav_facebook) {
+
+            String facebookUrl = "https://www.facebook.com/vichitad/";
+            try {
+                int versionCode = getPackageManager().getPackageInfo("com.facebook.katana", 0).versionCode;
+                if (versionCode >= 3002850) {
+                    Uri uri = Uri.parse("fb://facewebmodal/f?href=" + facebookUrl);
+                    startActivity(new Intent(Intent.ACTION_VIEW, uri));
+                } else {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("fb://page/336227679757310")));
+                }
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(facebookUrl)));
+            }
+
+        } else if (id == R.id.nav_contact) {
+
+            String phoneNumber = "085 687 556";
+            Intent intent = new Intent(Intent.ACTION_DIAL);
+            intent.setData(Uri.parse("tel:" + phoneNumber));
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -175,6 +206,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //        }
 
     }
+
 
     @Override
     public void onPause() {

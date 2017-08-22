@@ -6,7 +6,14 @@
 
     <string name="action_settings">Settings</string>
     <string name="khmer_song">Khmer Song</string>
+    <string name="text_title_request_song">សូមអរគុណចំពោះការគ្រាំកម្មវិធីនេះ។ ដើម្បីសំណូមពរ​ បទចម្រៀងបាន លោកអ្នកគ្រាន់តែបញ្ចូលនូវឈ្មោះ បទចម្រៀង,ឈ្មោះអ្នកចម្រៀង នៅប្រអប់ខាងក្រោម រួចធ្វើការចុចប៊ូតុងជាការស្រេច។</string>
+    <string name="text_name_song">សូមបញ្ចូលឈ្មោះបទចម្រៀង...</string>
+    <string name="text_name_singer">សូមបញ្ចូលឈ្មោះតារាចម្រៀង...</string>
+    <string name="text_something_input">ផ្សេងៗ...</string>
+    <string name="button_submit">បញ្ជូន</string>
+    <string name="text_complet_condition">បំពេញលក្ខខណ្ឌ័</string>
+    <string name="err_name">Validation</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
 </resources>
