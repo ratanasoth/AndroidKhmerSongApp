@@ -36,6 +36,7 @@
 
     <string name="activity_title_setting">ការកំណត់</string>
     <string name="activity_title_song_session">ចម្រៀងតាមសម័យ</string>
+    <string name="activity_home">ទំព័រដើម</string>
 
     <string name="toast_not_have_favorite">មិនមានចម្រៀងពេញចិត្ត</string>
     <string name="toast_data_save">អ្នកបានរក្សាទុក</string>
@@ -47,14 +48,14 @@
 
     <string name="manu_language_khmer">ខែ្មរ</string>
     <string name="manu_langauge_english">អង់គ្លេស</string>
+    <string name="manu_add_to_favorite">រក្សាទុក</string>
+    <string name="menu_remove_from_favorite">ដកពីបញ្ជី</string>
 
     <string name="alertdialog_yes">យល់ព្រម</string>
     <string name="alertdialog_no">បោះបង់</string>
     <string name="alertdialog_title_choose_langauge">ជ្រើសរើសភាសា</string>
     <string name="alertdialog_title_confirm">បញ្ជាក់!!</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

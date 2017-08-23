@@ -32,6 +32,7 @@
 
     <string name="activity_title_setting">Settings</string>
     <string name="activity_title_song_session">Song </string>
+    <string name="activity_home">Home</string>
 
     <string name="nav_newSong">New Song</string>
     <string name="nav_singer">Singer</string>
@@ -47,6 +48,8 @@
 
     <string name="manu_language_khmer">Khmer</string>
     <string name="manu_langauge_english">English</string>
+    <string name="manu_add_to_favorite">Add to favorite</string>
+    <string name="menu_remove_from_favorite">Remove From Favorite</string>
 
 
 

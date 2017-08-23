@@ -20,6 +20,7 @@ import com.example.jean.jcplayer.JcPlayerService;
 import com.example.jean.jcplayer.JcPlayerView;
 import com.vichit.khmersong.R;
 import com.vichit.khmersong.callback.OnPassData;
+import com.vichit.khmersong.fragment.main.AllSongFragment;
 import com.vichit.khmersong.fragment.main.FavoriteFragment;
 import com.vichit.khmersong.fragment.main.MainFragmentSong;
 import com.vichit.khmersong.fragment.main.RequestSongFragment;
@@ -61,6 +62,8 @@ public class MainActivity extends LocalizationActivity implements NavigationView
         jcPlayer = (JcPlayerView) findViewById(R.id.jcPlayer);
         jcPlayer.initPlaylist(new ArrayList<JcAudio>());
         jcPlayer.registerInvalidPathListener(this);
+
+        homePage();
 
 
     }
@@ -167,6 +170,8 @@ public class MainActivity extends LocalizationActivity implements NavigationView
                 }
             });
             singleChoiceDialogBuilder.show();
+        } else if (id == R.id.nav_home) {
+            homePage();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -232,6 +237,13 @@ public class MainActivity extends LocalizationActivity implements NavigationView
 //
 //        }
 
+    }
+
+    private void homePage() {
+        AllSongFragment allSongFragment = new AllSongFragment();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.contentMain, allSongFragment)
+                .commit();
     }
 
 
