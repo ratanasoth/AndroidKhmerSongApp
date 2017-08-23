@@ -55,7 +55,7 @@ public class SubFragmentModernMusic extends Fragment implements OnClickListener,
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.sub_fragment_modern_music, container, false);
-        getActivity().setTitle("ចម្រៀងថ្មីៗ");
+        getActivity().setTitle(R.string.nav_newSong);
 
         rvModernSong = (RecyclerView) v.findViewById(R.id.rvModernMusic);
         rvModernSong.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
@@ -146,7 +146,8 @@ public class SubFragmentModernMusic extends Fragment implements OnClickListener,
 
         String getSongToJson = sharedPreferences.getString(SharePreferenceKey.SONG_LIST, "[]");
 
-        Type type = new TypeToken<List<SongRespones.Songs>>() {}.getType();
+        Type type = new TypeToken<List<SongRespones.Songs>>() {
+        }.getType();
         final List<SongRespones.Songs> songSharePreference = new Gson().fromJson(getSongToJson, type);
 
         if (isSongExist(songSharePreference, songList.get(position))) {
@@ -164,14 +165,12 @@ public class SubFragmentModernMusic extends Fragment implements OnClickListener,
                     case R.id.popup_Favorite:
 
                         songSharePreference.add(songList.get(position));
-                        showMessage("អ្នកបានរក្សាទុក", context);
+                        showMessage(context.getString(R.string.toast_data_save), context);
                         break;
                     case R.id.popup_remove_favorite:
 
                         if (isDeleted(songSharePreference, songList.get(position))) {
-                            showMessage("បទនេះត្រូវបានលុបចេញពីបញ្ជី", context);
-                        } else {
-                            showMessage("fucking delete", context);
+                            showMessage(context.getString(R.string.toast_data_was_delete), context);
                         }
                         break;
                 }

@@ -3,17 +3,58 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">កំណត់</string>
+    <string name="khmer_song">ចម្រៀងខ្មែរ</string>
 
-    <string name="action_settings">Settings</string>
-    <string name="khmer_song">Khmer Song</string>
-    <string name="text_title_request_song">សូមអរគុណចំពោះការគ្រាំកម្មវិធីនេះ។ ដើម្បីសំណូមពរ​ បទចម្រៀងបាន លោកអ្នកគ្រាន់តែបញ្ចូលនូវឈ្មោះ បទចម្រៀង,ឈ្មោះអ្នកចម្រៀង នៅប្រអប់ខាងក្រោម រួចធ្វើការចុចប៊ូតុងជាការស្រេច។</string>
-    <string name="text_name_song">សូមបញ្ចូលឈ្មោះបទចម្រៀង...</string>
-    <string name="text_name_singer">សូមបញ្ចូលឈ្មោះតារាចម្រៀង...</string>
-    <string name="text_something_input">ផ្សេងៗ...</string>
-    <string name="button_submit">បញ្ជូន</string>
-    <string name="text_complet_condition">បំពេញលក្ខខណ្ឌ័</string>
     <string name="err_name">Validation</string>
 
+    <string name="hint_name_song">សូមបញ្ចូលឈ្មោះបទចម្រៀង...</string>
+    <string name="hint_name_singer">សូមបញ្ចូលឈ្មោះតារាចម្រៀង...</string>
+    <string name="hint_something_input">ផ្សេងៗ...</string>
+
+    <string name="text_title_request_song">សូមអរគុណចំពោះការគ្រាំកម្មវិធីនេះ។ ដើម្បីសំណូមពរ​ បទចម្រៀងបាន លោកអ្នកគ្រាន់តែបញ្ចូលនូវឈ្មោះ បទចម្រៀង,ឈ្មោះអ្នកចម្រៀង នៅប្រអប់ខាងក្រោម រួចធ្វើការចុចប៊ូតុងជាការស្រេច។</string>
+    <string name="text_clear_memory">សំអាតអង់ចងចាំ</string>
+    <string name="text_change_language">ប្ដូរភាសា</string>
+    <string name="text_btn_submit">បញ្ជូន</string>
+    <string name="text_complet_condition">បំពេញលក្ខខណ្ឌ័</string>
+    <string name="text_title_clearcache_alertdialog">តើអ្នកប្រាកដទេ ដែលចង់លុបវា?</string>
+    <string name="text_song">បទ: </string>
+    <string name="text_singerby">ច្រៀងដោយ: </string>
+
+
+    <string name="nav_saveSong">រក្សាទុកចម្រៀង</string>
+    <string name="nav_sendSong">សំណូមពរបទចម្រៀង</string>
+    <string name="nav_feedback">វាយតម្លៃ និងគាំទ្រ</string>
+    <string name="nav_contact">ទំនាក់ទំនង</string>
+    <string name="nav_settings">ការកំណត់ព៌មានផ្សេងៗ</string>
+    <string name="nav_newSong">ចម្រៀងថ្មីៗ</string>
+    <string name="nav_singer">តារាចម្រៀង</string>
+    <string name="nav_language">ភាសា</string>
+
+    <string name="tab_modern_song">ចម្រៀងសម័យ</string>
+    <string name="tab_classic_song">ចម្រៀងបុរាណ</string>
+
+    <string name="activity_title_setting">ការកំណត់</string>
+    <string name="activity_title_song_session">ចម្រៀងតាមសម័យ</string>
+
+    <string name="toast_not_have_favorite">មិនមានចម្រៀងពេញចិត្ត</string>
+    <string name="toast_data_save">អ្នកបានរក្សាទុក</string>
+    <string name="toast_data_was_delete">បទនេះត្រូវបានលុបចេញពីបញ្ជី</string>
+    <string name="toast_send_success">ពត៌មានត្រូវបានបញ្ជូន</string>
+    <string name="toast_send_failed">ការបញ្ជូនពត៌មានមិនបានជោគជ័យ</string>
+    <string name="toast_clear_data">ទន្នន័យត្រូវបានសំអាត</string>
+    <string name="toast_cancel">បោះបង់</string>
+
+    <string name="manu_language_khmer">ខែ្មរ</string>
+    <string name="manu_langauge_english">អង់គ្លេស</string>
+
+    <string name="alertdialog_yes">យល់ព្រម</string>
+    <string name="alertdialog_no">បោះបង់</string>
+    <string name="alertdialog_title_choose_langauge">ជ្រើសរើសភាសា</string>
+    <string name="alertdialog_title_confirm">បញ្ជាក់!!</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

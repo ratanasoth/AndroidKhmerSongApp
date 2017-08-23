@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -46,7 +47,7 @@ public class FavoriteFragment extends Fragment implements SwipeRefreshLayout.OnR
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_favorite, container, false);
-        getActivity().setTitle("ចម្រៀងរក្សាទុក");
+        getActivity().setTitle(R.string.nav_saveSong);
 
         rvFavorite = (RecyclerView) view.findViewById(R.id.rvFavorite);
         rvFavorite.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
@@ -79,18 +80,23 @@ public class FavoriteFragment extends Fragment implements SwipeRefreshLayout.OnR
 
         sharedPreferences = getContext().getSharedPreferences(SharePreferenceKey.SONG_LIST, Context.MODE_PRIVATE);
 
+
         getSongJson = sharedPreferences.getString(SharePreferenceKey.SONG_LIST, "N/A");
 
         if (!getSongJson.equals("N/A")) {
-
             Type type = new TypeToken<List<SongRespones.Songs>>() {
             }.getType();
             songSharePreference = new Gson().fromJson(getSongJson, type);
+            if (songSharePreference.size() == 0) {
+                Toast.makeText(getContext(), R.string.toast_not_have_favorite, Toast.LENGTH_SHORT).show();
+            }
 
             adapter.addMoreItem(songSharePreference);
             rvFavorite.setAdapter(adapter);
 
         }
+
+
     }
 
     @Override

@@ -29,8 +29,8 @@ public class MainFragmentSong extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        getActivity().setTitle(getString(R.string.activity_title_song_session));
         View v = inflater.inflate(R.layout.fragment_main_song, container, false);
 
         subFragmentModernMusic = new SubFragmentModernMusic();
@@ -46,11 +46,9 @@ public class MainFragmentSong extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
-
         adapter = new MyPagerApdapter(getChildFragmentManager(), getContext());
-        adapter.addTab(new Tab("ចម្រៀងសម័យ", subFragmentModernMusic));
-        adapter.addTab(new Tab("ចម្រៀងបុរាណ", subFragmentOldMusic));
+        adapter.addTab(new Tab(getString(R.string.tab_modern_song), subFragmentModernMusic));
+        adapter.addTab(new Tab(getString(R.string.tab_classic_song), subFragmentOldMusic));
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
 

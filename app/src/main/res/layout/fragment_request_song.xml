@@ -48,7 +48,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/custom_my_edittext"
-                    android:hint="@string/text_name_song"
+                    android:hint="@string/hint_name_song"
                     android:padding="15dp"
                     android:textSize="15sp" />
 
@@ -58,7 +58,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/custom_my_edittext"
-                    android:hint="@string/text_name_singer"
+                    android:hint="@string/hint_name_singer"
                     android:padding="15dp"
                     android:textSize="15sp" />
 
@@ -68,7 +68,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/custom_my_edittext"
-                    android:hint="@string/text_something_input"
+                    android:hint="@string/hint_something_input"
                     android:padding="15dp"
                     android:textSize="15sp" />
 
@@ -80,7 +80,7 @@
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/custom_my_button"
-                    android:text="@string/button_submit"
+                    android:text="@string/text_btn_submit"
                     android:textSize="20sp" />
 
                 <LinearLayout

@@ -1,5 +1,6 @@
 package com.vichit.khmersong.main;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -8,11 +9,12 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.akexorcist.localizationactivity.LocalizationActivity;
 import com.example.jean.jcplayer.JcAudio;
 import com.example.jean.jcplayer.JcPlayerService;
 import com.example.jean.jcplayer.JcPlayerView;
@@ -21,13 +23,14 @@ import com.vichit.khmersong.callback.OnPassData;
 import com.vichit.khmersong.fragment.main.FavoriteFragment;
 import com.vichit.khmersong.fragment.main.MainFragmentSong;
 import com.vichit.khmersong.fragment.main.RequestSongFragment;
+import com.vichit.khmersong.fragment.main.SetInformationFragment;
 import com.vichit.khmersong.fragment.main.SingerFragment;
 import com.vichit.khmersong.song_respone.SongRespones;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, JcPlayerService.JcPlayerServiceListener, JcPlayerService.OnInvalidPathListener, OnPassData {
+public class MainActivity extends LocalizationActivity implements NavigationView.OnNavigationItemSelectedListener, JcPlayerService.JcPlayerServiceListener, JcPlayerService.OnInvalidPathListener, OnPassData {
 
     JcPlayerView jcPlayer;
     ArrayList<JcAudio> jcAudiosList;
@@ -37,7 +40,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
+        setDefaultLanguage("km");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -140,6 +145,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Intent intent = new Intent(Intent.ACTION_DIAL);
             intent.setData(Uri.parse("tel:" + phoneNumber));
             startActivity(intent);
+
+        } else if (id == R.id.nav_settings) {
+            SetInformationFragment setInformationFragment = new SetInformationFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.contentMain, setInformationFragment)
+                    .commit();
+        } else if (id == R.id.nav_language) {
+            String language[] = getResources().getStringArray(R.array.langauge);
+            AlertDialog.Builder
+                    singleChoiceDialogBuilder = new AlertDialog.Builder(this);
+            singleChoiceDialogBuilder.setTitle(R.string.alertdialog_title_choose_langauge);
+            singleChoiceDialogBuilder.setItems(language, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int position) {
+                    if (position == 0) {
+                        setLanguage("km");
+                    } else if (position == 1) {
+                        setLanguage("en");
+                    }
+                }
+            });
+            singleChoiceDialogBuilder.show();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

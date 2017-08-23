@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -121,7 +120,6 @@ public class DetailSingerSongFragment extends Fragment implements SwipeRefreshLa
     public void onClickView(int position, View view) {
 
         SubFragmentModernMusic.actionManu(position, selectedSingersSongs, view, getContext());
-        Log.e("ppppp", selectedSingersSongs.get(position) + "");
 
 
     }

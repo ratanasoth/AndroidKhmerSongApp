@@ -49,8 +49,8 @@ public class FavoriteCustomAdapter extends RecyclerView.Adapter<FavoriteCustomAd
     public void onBindViewHolder(FavoriteViewHolder holder, int position) {
         songResponse = songsList.get(position);
 
-        holder.tvSongName.setText("បទ៖ " + songResponse.getSongName());
-        holder.tvSingerName.setText("ច្រៀងដោយ៖ " + songResponse.getSinger().getSingerName());
+        holder.tvSongName.setText(songResponse.getSongName());
+        holder.tvSingerName.setText(songResponse.getSinger().getSingerName());
         Picasso.with(context)
                 .load(songResponse.getSinger().getSingerImage())
                 .into(holder.ivProfile);

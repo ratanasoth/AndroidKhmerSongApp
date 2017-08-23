@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="langauge">
+        <item>@string/manu_language_khmer</item>
+        <item>@string/manu_langauge_english</item>
+    </string-array>
+
+
+</resources>

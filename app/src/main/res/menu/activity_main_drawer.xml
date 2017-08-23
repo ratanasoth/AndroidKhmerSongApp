@@ -5,11 +5,11 @@
         <item
             android:id="@+id/nav_newSong"
             android:icon="@drawable/ic_music"
-            android:title="ចម្រៀងថ្មីៗ" />
+            android:title="@string/nav_newSong" />
         <item
             android:id="@+id/nav_singer"
             android:icon="@drawable/ic_singer"
-            android:title="តារាចម្រៀង" />
+            android:title="@string/nav_singer" />
 
     </group>
 
@@ -17,17 +17,17 @@
         <item
             android:id="@+id/nav_saveSong"
             android:icon="@drawable/ic_favorite"
-            android:title="រក្សាទុកចម្រៀង" />
+            android:title="@string/nav_saveSong" />
         <item
             android:id="@+id/nav_sendSong"
             android:icon="@drawable/ic_sendsong"
-            android:title="សំណូមពរបទចម្រៀង" />
+            android:title="@string/nav_sendSong" />
     </group>
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_feedback"
             android:icon="@drawable/ic_feedback"
-            android:title="វាយតម្លៃ និងគាំទ្រ" />
+            android:title="@string/nav_feedback" />
         <item
             android:id="@+id/nav_facebook"
             android:icon="@drawable/ic_facebook"
@@ -38,11 +38,18 @@
         <item
             android:id="@+id/nav_contact"
             android:icon="@drawable/ic_contact"
-            android:title="ទំនាក់ទំនង" />
+            android:title="@string/nav_contact" />
+
+        <item
+            android:id="@+id/nav_language"
+            android:icon="@drawable/ic_language"
+            android:title="@string/nav_language" />
+
+
         <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/ic_settings"
-            android:title="ការកំណត់ព៌មានផ្សេងៗ" />
+            android:title="@string/nav_settings" />
     </group>
 
 </menu>

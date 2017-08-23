@@ -48,7 +48,7 @@ public class RequestSongFragment extends Fragment implements View.OnClickListene
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_request_song, container, false);
-        getActivity().setTitle("សំណូរពរចម្រៀង");
+        getActivity().setTitle(R.string.nav_sendSong);
 
         edSingerName = (EditText) view.findViewById(R.id.edSingerName_requestSong);
         edSongName = (EditText) view.findViewById(R.id.edSongName_requestSong);
@@ -88,10 +88,10 @@ public class RequestSongFragment extends Fragment implements View.OnClickListene
         generalInput = edGeneralInput.getText().toString();
 
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
-        alertDialog.setTitle("បញ្ជាក់!!");
-        alertDialog.setMessage("បទ: " + songName + "  ច្រៀងដោយ: " + singerName);
+        alertDialog.setTitle(R.string.alertdialog_title_confirm);
+        alertDialog.setMessage(getString(R.string.text_song) + songName + getString(R.string.text_singerby) + singerName);
         alertDialog.setCancelable(false);
-        alertDialog.setPositiveButton("យល់ព្រម", new DialogInterface.OnClickListener() {
+        alertDialog.setPositiveButton(R.string.alertdialog_yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 SongService songService = ServiceGenerator.createService(SongService.class);
@@ -100,12 +100,10 @@ public class RequestSongFragment extends Fragment implements View.OnClickListene
                     @Override
                     public void onResponse(Call<SongRequestByUser> call, Response<SongRequestByUser> response) {
                         if (response.isSuccessful()) {
-                            edSongName.setText("");
-                            edSingerName.setText("");
-                            edGeneralInput.setText("");
-                            Toast.makeText(getContext(), "ពត៌មានត្រូវបានបញ្ជូន", Toast.LENGTH_SHORT).show();
+                            clearEditText();
+                            Toast.makeText(getContext(), R.string.toast_send_success, Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(getContext(), "ការបញ្ជូនពត៌មានមិនបានជោគជ័យ", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(), R.string.toast_send_failed, Toast.LENGTH_LONG).show();
                         }
                     }
 
@@ -118,7 +116,7 @@ public class RequestSongFragment extends Fragment implements View.OnClickListene
 
             }
         });
-        alertDialog.setNegativeButton("បោះបង់", new DialogInterface.OnClickListener() {
+        alertDialog.setNegativeButton(R.string.alertdialog_no, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
@@ -144,5 +142,11 @@ public class RequestSongFragment extends Fragment implements View.OnClickListene
                 Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
             }
         }
+    }
+
+    private void clearEditText() {
+        edSongName.setText("");
+        edSingerName.setText("");
+        edGeneralInput.setText("");
     }
 }

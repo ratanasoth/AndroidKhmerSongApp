@@ -9,7 +9,6 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,11 +29,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-//import com.vichit.khmersong.adapter_layout.SingerCustomAdapter;
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class SingerFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, OnClickListener {
     RecyclerView rvSinger;
     List<SingerResponse.Singer> singersList;
@@ -51,7 +45,7 @@ public class SingerFragment extends Fragment implements SwipeRefreshLayout.OnRef
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        getActivity().setTitle("តារាចម្រៀង");
+        getActivity().setTitle(R.string.nav_singer);
 
         View view = inflater.inflate(R.layout.fragment_singer, container, false);
         rvSinger = (RecyclerView) view.findViewById(R.id.rvSinger);
@@ -99,7 +93,6 @@ public class SingerFragment extends Fragment implements SwipeRefreshLayout.OnRef
 
             @Override
             public void onFailure(Call<SingerResponse> call, Throwable t) {
-                Log.e("ppppp", "onFailure");
                 t.printStackTrace();
             }
         });
@@ -112,8 +105,6 @@ public class SingerFragment extends Fragment implements SwipeRefreshLayout.OnRef
         DetailSingerSongFragment detailSingerSongFragment = new DetailSingerSongFragment();
         Bundle bundle = new Bundle();
         bundle.putInt("key", singerResponse.getSingerList().get(position).getId());
-        Log.e("ppppp", singerResponse.getSingerList().get(position).getId() + "");
-        //bundle.putInt("key", position);
         detailSingerSongFragment.setArguments(bundle);
 
         FragmentManager transaction = getActivity().getSupportFragmentManager();

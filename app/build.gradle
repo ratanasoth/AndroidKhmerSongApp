@@ -25,6 +25,13 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
+
+
+
+
+    compile('com.akexorcist:localizationactivity:1.1.2') {
+        exclude module: 'appcompat-v7'
+    }
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
@@ -37,8 +44,6 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.makeramen:roundedimageview:2.3.0'
     compile 'com.google.code.gson:gson:2.8.1'
-
     compile 'com.mobsandgeeks:android-saripaar:2.0.3'
-
     testCompile 'junit:junit:4.12'
 }
