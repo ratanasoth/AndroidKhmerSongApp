@@ -2,6 +2,7 @@ package com.vichit.khmersong.fragment.fragment_tab;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -32,6 +33,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import dmax.dialog.SpotsDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -45,6 +47,7 @@ public class SubFragmentModernMusic extends Fragment implements OnClickListener,
     List<SongRespones.Songs> songList;
     SwipeRefreshLayout swipeRefreshModernSong;
     SongService songService;
+    private AlertDialog progressDialog;
 
 
     public SubFragmentModernMusic() {
@@ -73,6 +76,9 @@ public class SubFragmentModernMusic extends Fragment implements OnClickListener,
         adapter = new MusicCustomAdapter(getContext());
         getAllSong();
 
+        progressDialog = new SpotsDialog(getContext(), R.style.customDialog);
+        progressDialog.show();
+
         adapter.setOnClickListener(this);
         swipeRefreshModernSong.setOnRefreshListener(this);
     }
@@ -81,15 +87,19 @@ public class SubFragmentModernMusic extends Fragment implements OnClickListener,
     @Override
     public void onRefresh() {
         getAllSong();
-        adapter.notifyDataSetChanged();
+        if (adapter != null) {
+            adapter.notifyDataSetChanged();
+        }
         swipeRefreshModernSong.setRefreshing(false);
     }
 
 
     @Override
     public void onClickView(final int position, View view) {
-        songList = songRespones.getSongs();
-        actionManu(position, songList, view, getContext());
+        if (songList != null) {
+            songList = songRespones.getSongs();
+            actionManu(position, songList, view, getContext());
+        }
 
 
     }
@@ -125,13 +135,17 @@ public class SubFragmentModernMusic extends Fragment implements OnClickListener,
             @Override
             public void onResponse(Call<SongRespones> call, Response<SongRespones> response) {
                 songRespones = response.body();
-                adapter.addMoreItem(songRespones.getSongs());
-                rvModernSong.setAdapter(adapter);
+                if (adapter != null) {
+                    adapter.addMoreItem(songRespones.getSongs());
+                    rvModernSong.setAdapter(adapter);
+                }
+                progressDialog.dismiss();
             }
 
             @Override
             public void onFailure(Call<SongRespones> call, Throwable t) {
                 t.printStackTrace();
+                progressDialog.dismiss();
             }
         });
     }

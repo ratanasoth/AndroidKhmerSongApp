@@ -65,6 +65,8 @@ public class FavoriteFragment extends Fragment implements SwipeRefreshLayout.OnR
         adapter = new FavoriteCustomAdapter(getContext());
         getAllSharePreference();
 
+
+
         swipeRefreshFavorite.setOnRefreshListener(this);
         adapter.setOnClickListener(this);
 
@@ -93,6 +95,7 @@ public class FavoriteFragment extends Fragment implements SwipeRefreshLayout.OnR
 
             adapter.addMoreItem(songSharePreference);
             rvFavorite.setAdapter(adapter);
+
 
         }
 

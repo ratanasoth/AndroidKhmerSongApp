@@ -15,7 +15,8 @@ public class ServiceGenerator {
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
     private static Retrofit.Builder builder = new Retrofit.Builder()
-            .baseUrl("http://10.0.3.2:8000/")
+//            .baseUrl("http://10.0.3.2:8000/")
+            .baseUrl("https://mysongdatabase1.000webhostapp.com/KhmerSongApi/public/")
             .addConverterFactory(GsonConverterFactory.create());
 
     public static <S> S createService(Class<S> serviceClass) {
