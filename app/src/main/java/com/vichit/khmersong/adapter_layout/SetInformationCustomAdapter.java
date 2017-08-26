@@ -52,7 +52,10 @@ public class SetInformationCustomAdapter extends RecyclerView.Adapter<SetInforma
 
     @Override
     public int getItemCount() {
-        return listInformation.size();
+        if (listInformation != null) {
+            return listInformation.size();
+        }
+        return 0;
     }
 
 

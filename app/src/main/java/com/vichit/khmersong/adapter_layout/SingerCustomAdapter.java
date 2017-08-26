@@ -58,7 +58,10 @@ public class SingerCustomAdapter extends RecyclerView.Adapter<SingerCustomAdapte
 
     @Override
     public int getItemCount() {
-        return singersList.size();
+        if (singersList != null) {
+            return singersList.size();
+        }
+        return 0;
     }
 
     public void setOnItemClick(OnClickListener onClickListener) {

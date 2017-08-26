@@ -59,7 +59,10 @@ public class FavoriteCustomAdapter extends RecyclerView.Adapter<FavoriteCustomAd
 
     @Override
     public int getItemCount() {
-        return songsList.size();
+        if (songsList != null) {
+            return songsList.size();
+        }
+        return 0;
     }
 
     public void setOnClickListener(OnClickListener onClickListener) {
