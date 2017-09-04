@@ -20,7 +20,6 @@ import com.example.jean.jcplayer.JcPlayerService;
 import com.example.jean.jcplayer.JcPlayerView;
 import com.vichit.khmersong.R;
 import com.vichit.khmersong.callback.OnPassData;
-import com.vichit.khmersong.fragment.main.AllSongFragment;
 import com.vichit.khmersong.fragment.main.FavoriteFragment;
 import com.vichit.khmersong.fragment.main.MainFragmentSong;
 import com.vichit.khmersong.fragment.main.RequestSongFragment;
@@ -105,10 +104,8 @@ public class MainActivity extends LocalizationActivity implements NavigationView
 
 
         if (id == R.id.nav_newSong) {
-            MainFragmentSong mainFragmentSong = new MainFragmentSong();
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.contentMain, mainFragmentSong)
-                    .commit();
+            homePage();
+
         } else if (id == R.id.nav_singer) {
             SingerFragment singerFragment = new SingerFragment();
             getSupportFragmentManager().beginTransaction()
@@ -170,8 +167,6 @@ public class MainActivity extends LocalizationActivity implements NavigationView
                 }
             });
             singleChoiceDialogBuilder.show();
-        } else if (id == R.id.nav_home) {
-            homePage();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -184,14 +179,13 @@ public class MainActivity extends LocalizationActivity implements NavigationView
     @Override
     public void onPassDataToActivity(List<SongRespones.Songs> songList, int position) {
 
-//        if (!songList.get(0).getCategory().getName().equals(category)) {
-        category = songList.get(0).getCategory().getName();
-        jcPlayer.getMyPlaylist().clear();
-        for (SongRespones.Songs m : songList) {
-            titleName = m.getSongName();
-            pathUrl = m.getSongUrl();
-            jcPlayer.getMyPlaylist().add(JcAudio.createFromURL(titleName, pathUrl));
-        }
+            jcPlayer.getMyPlaylist().clear();
+            for (SongRespones.Songs m : songList) {
+                titleName = m.getSongName();
+                pathUrl = m.getSongUrl();
+                jcPlayer.getMyPlaylist().add(JcAudio.createFromURL(titleName, pathUrl));
+
+            }
 
         jcPlayer.playAudio(jcPlayer.getMyPlaylist().get(position));
 
@@ -240,9 +234,9 @@ public class MainActivity extends LocalizationActivity implements NavigationView
     }
 
     private void homePage() {
-        AllSongFragment allSongFragment = new AllSongFragment();
+        MainFragmentSong mainFragmentSong = new MainFragmentSong();
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.contentMain, allSongFragment)
+                .replace(R.id.contentMain, mainFragmentSong)
                 .commit();
     }
 
@@ -266,8 +260,6 @@ public class MainActivity extends LocalizationActivity implements NavigationView
 
     @Override
     public void onCompletedAudio() {
-        jcAudiosList.clear();
-
 
     }
 

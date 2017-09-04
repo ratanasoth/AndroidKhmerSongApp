@@ -83,10 +83,11 @@ public class SubFragmentOldMusic extends Fragment implements OnClickListener, Sw
             @Override
             public void onResponse(Call<SongRespones> call, Response<SongRespones> response) {
                 songRespones = response.body();
-                if (adapter != null) {
+                if (songRespones != null) {
                     adapter.addMoreItem(songRespones.getSongs());
                     rvOldMusic.setAdapter(adapter);
                 }
+
             }
 
             @Override

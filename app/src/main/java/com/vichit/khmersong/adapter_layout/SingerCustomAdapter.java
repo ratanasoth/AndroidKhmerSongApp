@@ -31,7 +31,9 @@ public class SingerCustomAdapter extends RecyclerView.Adapter<SingerCustomAdapte
     }
 
     public void addMoreSong(List<SingerResponse.Singer> singersList) {
-        this.singersList = singersList;
+        if (singersList != null) {
+            this.singersList = singersList;
+        }
     }
 
     @Override

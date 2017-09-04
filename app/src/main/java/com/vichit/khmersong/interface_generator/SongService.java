@@ -27,8 +27,8 @@ public interface SongService {
     @GET("api/v1/songs")
     Call<SongRespones> findAllSongBySinger();
 
-    @GET("api/v1/songs")
-    Call<SongRespones> findAllSong();
+//    @GET("api/v1/songs")
+//    Call<SongRespones> findAllSong();
 
     @FormUrlEncoded
     @POST("api/v1/request")

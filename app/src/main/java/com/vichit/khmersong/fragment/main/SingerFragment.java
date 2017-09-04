@@ -1,6 +1,7 @@
 package com.vichit.khmersong.fragment.main;
 
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -25,6 +26,7 @@ import com.vichit.khmersong.song_respone.SongRespones;
 import java.util.ArrayList;
 import java.util.List;
 
+import dmax.dialog.SpotsDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -35,6 +37,7 @@ public class SingerFragment extends Fragment implements SwipeRefreshLayout.OnRef
     SingerResponse singerResponse;
     SingerCustomAdapter adapter;
     SwipeRefreshLayout swipeRefreshSinger;
+    private AlertDialog progressDialog;
 
 
     public SingerFragment() {
@@ -67,6 +70,9 @@ public class SingerFragment extends Fragment implements SwipeRefreshLayout.OnRef
         adapter = new SingerCustomAdapter(getContext());
         getAllSinger();
 
+        progressDialog = new SpotsDialog(getContext(), R.style.customDialog);
+        progressDialog.show();
+
         swipeRefreshSinger.setOnRefreshListener(this);
         adapter.setOnItemClick(this);
 
@@ -85,15 +91,17 @@ public class SingerFragment extends Fragment implements SwipeRefreshLayout.OnRef
             @Override
             public void onResponse(Call<SingerResponse> call, Response<SingerResponse> response) {
                 singerResponse = response.body();
-                adapter.addMoreSong(singerResponse.getSingerList());
-
-                rvSinger.setAdapter(adapter);
-
+                if (singerResponse != null) {
+                    adapter.addMoreSong(singerResponse.getSingerList());
+                    rvSinger.setAdapter(adapter);
+                }
+                progressDialog.dismiss();
             }
 
             @Override
             public void onFailure(Call<SingerResponse> call, Throwable t) {
                 t.printStackTrace();
+                progressDialog.dismiss();
             }
         });
     }

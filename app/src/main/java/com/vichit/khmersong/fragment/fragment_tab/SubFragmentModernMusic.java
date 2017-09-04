@@ -135,10 +135,11 @@ public class SubFragmentModernMusic extends Fragment implements OnClickListener,
             @Override
             public void onResponse(Call<SongRespones> call, Response<SongRespones> response) {
                 songRespones = response.body();
-                if (adapter != null) {
+                if (songRespones != null) {
                     adapter.addMoreItem(songRespones.getSongs());
                     rvModernSong.setAdapter(adapter);
                 }
+
                 progressDialog.dismiss();
             }
 

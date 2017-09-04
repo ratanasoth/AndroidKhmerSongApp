@@ -1,6 +1,7 @@
 package com.vichit.khmersong.fragment.detail_fragment;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -25,6 +26,7 @@ import com.vichit.khmersong.song_respone.SongRespones;
 import java.util.ArrayList;
 import java.util.List;
 
+import dmax.dialog.SpotsDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -40,7 +42,7 @@ public class DetailSingerSongFragment extends Fragment implements SwipeRefreshLa
     SwipeRefreshLayout swipeRefreshSingerDetail;
     OnPassData onPassData;
     int getSingerId;
-    protected static String LOG = "ppppp";
+    private AlertDialog progressDialog;
 
 
     public DetailSingerSongFragment() {
@@ -73,6 +75,9 @@ public class DetailSingerSongFragment extends Fragment implements SwipeRefreshLa
         adapter = new MusicCustomAdapter(getContext());
         getAllSongBySinger();
 
+        progressDialog = new SpotsDialog(getContext(), R.style.customDialog);
+        progressDialog.show();
+
         adapter.setOnClickListener(this);
 
     }
@@ -100,15 +105,18 @@ public class DetailSingerSongFragment extends Fragment implements SwipeRefreshLa
                         selectedSingersSongs.add(songs);
                     }
                 }
-
-                adapter.addMoreItem(selectedSingersSongs);
-                rvSongBySinger.setAdapter(adapter);
+                if (selectedSingersSongs != null) {
+                    adapter.addMoreItem(selectedSingersSongs);
+                    rvSongBySinger.setAdapter(adapter);
+                }
+                progressDialog.dismiss();
 
             }
 
             @Override
             public void onFailure(Call<SongRespones> call, Throwable t) {
                 t.printStackTrace();
+                progressDialog.dismiss();
             }
         });
 

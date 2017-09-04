@@ -38,10 +38,10 @@ public class MusicCustomAdapter extends RecyclerView.Adapter<MusicCustomAdapter.
          * Have reference with constructor.
          * When call this method
          */
-        if (songList != null) {
-            this.songList = songList;
-            notifyDataSetChanged();
-        }
+        this.songList = songList;
+        notifyDataSetChanged();
+
+
     }
 
     @Override
@@ -68,8 +68,9 @@ public class MusicCustomAdapter extends RecyclerView.Adapter<MusicCustomAdapter.
     public int getItemCount() {
         if (songList != null) {
             return songList.size();
+        } else {
+            return 0;
         }
-        return 0;
     }
 
     public void setOnClickListener(OnClickListener onClickListener) {
