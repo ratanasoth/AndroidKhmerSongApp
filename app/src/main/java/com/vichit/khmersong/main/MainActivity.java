@@ -18,6 +18,8 @@ import com.akexorcist.localizationactivity.LocalizationActivity;
 import com.example.jean.jcplayer.JcAudio;
 import com.example.jean.jcplayer.JcPlayerService;
 import com.example.jean.jcplayer.JcPlayerView;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.vichit.khmersong.R;
 import com.vichit.khmersong.callback.OnPassData;
 import com.vichit.khmersong.fragment.main.FavoriteFragment;
@@ -33,10 +35,9 @@ import java.util.List;
 public class MainActivity extends LocalizationActivity implements NavigationView.OnNavigationItemSelectedListener, JcPlayerService.JcPlayerServiceListener, JcPlayerService.OnInvalidPathListener, OnPassData {
 
     JcPlayerView jcPlayer;
-    ArrayList<JcAudio> jcAudiosList;
     String titleName;
     String pathUrl;
-    String category = "";
+    private AdView mAdView;
 
 
     @Override
@@ -48,6 +49,9 @@ public class MainActivity extends LocalizationActivity implements NavigationView
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -153,8 +157,7 @@ public class MainActivity extends LocalizationActivity implements NavigationView
                     .commit();
         } else if (id == R.id.nav_language) {
             String language[] = getResources().getStringArray(R.array.langauge);
-            AlertDialog.Builder
-                    singleChoiceDialogBuilder = new AlertDialog.Builder(this);
+            AlertDialog.Builder singleChoiceDialogBuilder = new AlertDialog.Builder(this);
             singleChoiceDialogBuilder.setTitle(R.string.alertdialog_title_choose_langauge);
             singleChoiceDialogBuilder.setItems(language, new DialogInterface.OnClickListener() {
                 @Override

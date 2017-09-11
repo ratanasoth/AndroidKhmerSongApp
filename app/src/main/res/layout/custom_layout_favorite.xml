@@ -25,6 +25,7 @@
         android:layout_marginBottom="10dp"
         android:layout_toRightOf="@id/ivProfile_Favorite"
         android:maxLines="1"
+        android:textColor="@color/colorBlack"
         android:text="បទ៖ បងពីមុនឆ្កួតបាត់ហើយ"
         android:textSize="15sp" />
 
@@ -32,6 +33,7 @@
         android:id="@+id/tvSingerName_Favorite"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorBlack"
         android:layout_below="@+id/tvNameSong_Favorite"
         android:layout_marginBottom="10dp"
         android:layout_toRightOf="@+id/ivProfile_Favorite"

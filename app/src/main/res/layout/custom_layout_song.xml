@@ -26,6 +26,7 @@
         android:layout_toRightOf="@id/ivProfile"
         android:maxLines="1"
         android:text="បទ៖ បងពីមុនឆ្កួតបាត់ហើយ"
+        android:textColor="@color/colorBlack"
         android:textSize="15sp" />
 
     <TextView
@@ -37,6 +38,7 @@
         android:layout_toRightOf="@+id/ivProfile"
         android:maxLines="1"
         android:text="ម្ចាស់ចំនៀង៖ ឆាយ វីរះយុទ្ធ"
+        android:textColor="@color/colorBlack"
         android:textSize="15sp" />
 
 

@@ -1,60 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
-        <!--<item-->
-            <!--android:id="@+id/nav_home"-->
-            <!--android:icon="@drawable/ic_home"-->
-            <!--android:title="@string/activity_home" />-->
+    <item android:title="ចម្រៀង" >
+        <menu>
+            <item
+                android:id="@+id/nav_newSong"
+                android:icon="@drawable/ic_music"
+                android:title="@string/nav_newSong" />
+            <item
+                android:id="@+id/nav_singer"
+                android:icon="@drawable/ic_singer"
+                android:title="@string/nav_singer" />
+        </menu>
+    </item>
+    <item android:title="អ្នកប្រើប្រាស់">
+        <menu>
+            <item android:title="">
+                <item
+                    android:id="@+id/nav_saveSong"
+                    android:icon="@drawable/ic_favorite"
+                    android:title="@string/nav_saveSong" />
+                <item
+                    android:id="@+id/nav_sendSong"
+                    android:icon="@drawable/ic_sendsong"
+                    android:title="@string/nav_sendSong" />
+            </item>
+        </menu>
+    </item>
 
-        <item
-            android:id="@+id/nav_newSong"
-            android:icon="@drawable/ic_music"
-            android:title="@string/nav_newSong" />
-        <item
-            android:id="@+id/nav_singer"
-            android:icon="@drawable/ic_singer"
-            android:title="@string/nav_singer" />
+    <item android:title="គាំទ្រ នឹងវាយតម្លៃ">
+        <menu>
+            <item
+                android:id="@+id/nav_feedback"
+                android:icon="@drawable/ic_feedback"
+                android:title="@string/nav_feedback" />
+        </menu>
+    </item>
 
-    </group>
+    <item android:title="ទំនាក់ទំនង">
+        <menu>
+            <item
+                android:id="@+id/nav_facebook"
+                android:icon="@drawable/ic_facebook"
+                android:title="Facebook Page" />
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_saveSong"
-            android:icon="@drawable/ic_favorite"
-            android:title="@string/nav_saveSong" />
-        <item
-            android:id="@+id/nav_sendSong"
-            android:icon="@drawable/ic_sendsong"
-            android:title="@string/nav_sendSong" />
-    </group>
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_feedback"
-            android:icon="@drawable/ic_feedback"
-            android:title="@string/nav_feedback" />
-        <item
-            android:id="@+id/nav_facebook"
-            android:icon="@drawable/ic_facebook"
-            android:title="Facebook Page" />
-    </group>
+            <item
+                android:id="@+id/nav_contact"
+                android:icon="@drawable/ic_contact"
+                android:title="@string/nav_contact" />
+        </menu>
+    </item>
+    <item android:title="ការកំណត់">
+        <menu>
+            <item
+                android:id="@+id/nav_language"
+                android:icon="@drawable/ic_language"
+                android:title="@string/nav_language" />
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_contact"
-            android:icon="@drawable/ic_contact"
-            android:title="@string/nav_contact" />
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_settings"
+                android:title="@string/nav_settings" />
 
-        <item
-            android:id="@+id/nav_language"
-            android:icon="@drawable/ic_language"
-            android:title="@string/nav_language" />
-
-
-        <item
-            android:id="@+id/nav_settings"
-            android:icon="@drawable/ic_settings"
-            android:title="@string/nav_settings" />
-    </group>
+        </menu>
+    </item>
 
 </menu>

@@ -56,6 +56,9 @@
     <string name="alertdialog_title_choose_langauge">ជ្រើសរើសភាសា</string>
     <string name="alertdialog_title_confirm">បញ្ជាក់!!</string>
 
+    <!--<string name="ad_banner">ca-app-pub-3940256099942544/6300978111</string>-->
+    <string name="ad_banner">ca-app-pub-2195350826334025/9682837305</string>
+
 
 
 </resources>

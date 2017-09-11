@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "96154824090",
+    "firebase_url": "https://khmersongadmob.firebaseio.com",
+    "project_id": "khmersongadmob",
+    "storage_bucket": "khmersongadmob.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:96154824090:android:5d4ae9a4013bc92b",
+        "android_client_info": {
+          "package_name": "com.vichit.khmersong"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "96154824090-o9tj6mobj2fbt1svsfjrisiac6aq6c3l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vichit.khmersong",
+            "certificate_hash": "1a399ce739415acbea1dd294070694b803313ced"
+          }
+        },
+        {
+          "client_id": "96154824090-l6hn9lnqee9p8cp7os1njduijvce11bl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnfYDQ4YIuz6YdVwQmOubjgZNu0tHm8Vk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "96154824090-l6hn9lnqee9p8cp7os1njduijvce11bl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

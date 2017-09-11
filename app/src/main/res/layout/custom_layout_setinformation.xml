@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-
     app:cardBackgroundColor="@color/colorPrimary"
     app:cardCornerRadius="5dp">
 
@@ -30,7 +29,7 @@
             android:layout_toRightOf="@id/ivProfile_setInformation"
             android:gravity="center"
             android:text="@string/text_clear_memory"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorWhite"
             android:textSize="20sp" />
 
 

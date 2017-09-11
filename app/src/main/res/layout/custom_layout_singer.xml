@@ -4,24 +4,26 @@
     android:id="@+id/card_view"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp">
-    <!--android:layout_margin="5dp"-->
-    <!--card_view:cardCornerRadius="4dp">-->
+    android:layout_marginBottom="5dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    card_view:cardCornerRadius="10dp"
+    android:layout_marginTop="10dp">
 
     <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="5dp">
 
         <com.makeramen.roundedimageview.RoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/ivSinger"
             android:layout_width="150dp"
             android:layout_height="150dp"
+            android:padding="5dp"
             android:scaleType="fitXY"
             android:src="@drawable/khem"
-            app:riv_border_color="#000000"
+            app:riv_border_color="@color/colorBlack"
             app:riv_border_width="1dip"
             app:riv_corner_radius="10dip"
             app:riv_mutate_background="true" />

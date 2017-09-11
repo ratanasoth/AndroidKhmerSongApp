@@ -5,12 +5,12 @@
 
     <TextView
         android:id="@+id/tv_newMusic"
-        android:background="@drawable/selector_tab_text"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:text="ចម្រៀងសម័យ"
-        android:textSize="20sp" />
+        android:textSize="25sp" />
 
 </LinearLayout>
