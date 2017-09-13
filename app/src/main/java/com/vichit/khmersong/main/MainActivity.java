@@ -5,7 +5,10 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -38,6 +41,9 @@ public class MainActivity extends LocalizationActivity implements NavigationView
     String titleName;
     String pathUrl;
     private AdView mAdView;
+    private FragmentManager fragmentManager;
+    private Fragment fragment;
+    private String tag;
 
 
     @Override
@@ -66,6 +72,7 @@ public class MainActivity extends LocalizationActivity implements NavigationView
         jcPlayer.initPlaylist(new ArrayList<JcAudio>());
         jcPlayer.registerInvalidPathListener(this);
 
+        fragmentManager = getSupportFragmentManager();
         homePage();
 
 
@@ -91,10 +98,10 @@ public class MainActivity extends LocalizationActivity implements NavigationView
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-
+            Intent settings = new Intent(Settings.ACTION_SETTINGS);
+            startActivity(settings);
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -103,29 +110,34 @@ public class MainActivity extends LocalizationActivity implements NavigationView
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-
         if (id == R.id.nav_newSong) {
-            homePage();
+            newSong();
 
         } else if (id == R.id.nav_singer) {
-            SingerFragment singerFragment = new SingerFragment();
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.contentMain, singerFragment)
-                    .commit();
+            if (fragmentManager.findFragmentByTag("singer") != null) {
+                fragment = fragmentManager.findFragmentByTag("singer");
+            } else {
+                fragment = new SingerFragment();
+            }
+            tag = "singer";
+
         } else if (id == R.id.nav_saveSong) {
-            FavoriteFragment favoriteFragment = new FavoriteFragment();
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.contentMain, favoriteFragment)
-                    .commit();
+            if (fragmentManager.findFragmentByTag("favorite") != null) {
+                fragment = fragmentManager.findFragmentByTag("favorite");
+            } else {
+                fragment = new FavoriteFragment();
+            }
+            tag = "favorite";
 
         } else if (id == R.id.nav_sendSong) {
-            RequestSongFragment requestSongFragment = new RequestSongFragment();
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.contentMain, requestSongFragment)
-                    .commit();
+            if (fragmentManager.findFragmentByTag("request") != null) {
+                fragment = fragmentManager.findFragmentByTag("request");
+            } else {
+                fragment = new RequestSongFragment();
+            }
+            tag = "request";
 
         } else if (id == R.id.nav_facebook) {
 
@@ -151,10 +163,12 @@ public class MainActivity extends LocalizationActivity implements NavigationView
             startActivity(intent);
 
         } else if (id == R.id.nav_settings) {
-            SetInformationFragment setInformationFragment = new SetInformationFragment();
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.contentMain, setInformationFragment)
-                    .commit();
+            if (fragmentManager.findFragmentByTag("settings") != null) {
+                fragment = fragmentManager.findFragmentByTag("settings");
+            } else {
+                fragment = new SetInformationFragment();
+            }
+            tag = "settings";
         } else if (id == R.id.nav_language) {
             String language[] = getResources().getStringArray(R.array.langauge);
             AlertDialog.Builder singleChoiceDialogBuilder = new AlertDialog.Builder(this);
@@ -172,6 +186,10 @@ public class MainActivity extends LocalizationActivity implements NavigationView
             singleChoiceDialogBuilder.show();
         }
 
+
+        fragment.setRetainInstance(true);
+        fragmentManager.beginTransaction().replace(R.id.contentMain, fragment, tag).commit();
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -182,13 +200,13 @@ public class MainActivity extends LocalizationActivity implements NavigationView
     @Override
     public void onPassDataToActivity(List<SongRespones.Songs> songList, int position) {
 
-            jcPlayer.getMyPlaylist().clear();
-            for (SongRespones.Songs m : songList) {
-                titleName = m.getSongName();
-                pathUrl = m.getSongUrl();
-                jcPlayer.getMyPlaylist().add(JcAudio.createFromURL(titleName, pathUrl));
+        jcPlayer.getMyPlaylist().clear();
+        for (SongRespones.Songs m : songList) {
+            titleName = m.getSongName();
+            pathUrl = m.getSongUrl();
+            jcPlayer.getMyPlaylist().add(JcAudio.createFromURL(titleName, pathUrl));
 
-            }
+        }
 
         jcPlayer.playAudio(jcPlayer.getMyPlaylist().get(position));
 
@@ -236,11 +254,25 @@ public class MainActivity extends LocalizationActivity implements NavigationView
 
     }
 
-    private void homePage() {
-        MainFragmentSong mainFragmentSong = new MainFragmentSong();
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.contentMain, mainFragmentSong)
-                .commit();
+    private void newSong() {
+        if (fragmentManager.findFragmentByTag("home") != null) {
+            fragment = fragmentManager.findFragmentByTag("home");
+        } else {
+            fragment = new MainFragmentSong();
+        }
+        tag = "home";
+
+    }
+    private void homePage(){
+        if (fragmentManager.findFragmentByTag("home") != null) {
+            fragment = fragmentManager.findFragmentByTag("home");
+        } else {
+            fragment = new MainFragmentSong();
+            fragment.setRetainInstance(true);
+            fragmentManager.beginTransaction().replace(R.id.contentMain, fragment, tag).commit();
+
+        }
+        tag = "home";
     }
 
 
@@ -293,6 +325,7 @@ public class MainActivity extends LocalizationActivity implements NavigationView
 
     @Override
     public void onPathError(JcAudio jcAudio) {
+        jcPlayer.kill();
 
     }
 }
