@@ -50,7 +50,7 @@ public class SubFragmentOldMusic extends Fragment implements OnClickListener, Sw
         View view = inflater.inflate(R.layout.sub_fragment_old_music, container, false);
         rvOldMusic = (RecyclerView) view.findViewById(R.id.rvOldMusic);
         rvOldMusic.setLayoutManager(new LinearLayoutManager(getContext(),
-                LinearLayoutManager.VERTICAL, false));
+                LinearLayoutManager.VERTICAL, true));
 
         swipeRefreshOldSong = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshOldSong);
 

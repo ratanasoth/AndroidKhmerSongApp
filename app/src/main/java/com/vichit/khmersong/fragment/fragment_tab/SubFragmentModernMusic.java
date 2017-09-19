@@ -61,7 +61,7 @@ public class SubFragmentModernMusic extends Fragment implements OnClickListener,
         getActivity().setTitle(R.string.nav_newSong);
 
         rvModernSong = (RecyclerView) v.findViewById(R.id.rvModernMusic);
-        rvModernSong.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        rvModernSong.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, true));
 
         swipeRefreshModernSong = (SwipeRefreshLayout) v.findViewById(R.id.swipeRefreshModernSong);
 

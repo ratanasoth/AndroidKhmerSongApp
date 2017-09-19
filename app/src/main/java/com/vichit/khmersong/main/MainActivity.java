@@ -316,6 +316,7 @@ public class MainActivity extends LocalizationActivity implements NavigationView
     @Override
     public void onTimeChanged(long currentTime) {
 
+
     }
 
     @Override
