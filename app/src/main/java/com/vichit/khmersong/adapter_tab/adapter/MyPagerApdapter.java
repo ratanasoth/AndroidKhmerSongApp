@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.vichit.khmersong.R;
-import com.vichit.khmersong.adapter_tab.model.Tab;
+import com.vichit.khmersong.model.local.TabModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ import java.util.List;
 
 public class MyPagerApdapter extends FragmentPagerAdapter {
 
-    List<Tab> tabList;
+    List<TabModel> tabList;
     Context context;
 
     public MyPagerApdapter(FragmentManager fm, Context context) {
@@ -44,13 +44,13 @@ public class MyPagerApdapter extends FragmentPagerAdapter {
         //return null;
     }
 
-    public void addTab(Tab tab) {
+    public void addTab(TabModel tab) {
         tabList.add(tab);
 
     }
 
 
-    //Dynamic Tab
+    //Dynamic TabModel
     public void tabLayoutIcon(TabLayout tabLayout) {
         for (int i = 0; i < tabList.size(); i++) {
             tabLayout.getTabAt(i).setIcon(tabList.get(i).getIcon());
@@ -58,16 +58,16 @@ public class MyPagerApdapter extends FragmentPagerAdapter {
     }
 
 
-    //Custom Tab
+    //Custom TabModel
     public void changeTablayoutCustomIcon(TabLayout tabLayout) {
         for (int i = 0; i < tabList.size(); i++) {
             tabLayout.getTabAt(i).setCustomView(getCustomView(i));
         }
     }
 
-    //Custom Tab
+    //Custom TabModel
     private View getCustomView(int position) {
-        Tab tab = tabList.get(position);
+        TabModel tab = tabList.get(position);
         View v = LayoutInflater.from(context).inflate(R.layout.custom_tab, null);
         TextView tvTitle = (TextView) v.findViewById(R.id.tv_newMusic);
 //        ImageView ivIcon = (ImageView) v.findViewById(R.id.ivIcon);

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/colorWhite"
-    tools:context="com.vichit.khmersong.fragment.main.SingerFragment">
+    tools:context=".ui.fragment.main.SingerFragment">
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshSinger"

@@ -1,4 +1,4 @@
-package com.vichit.khmersong.fragment.main;
+package com.vichit.khmersong.ui.fragment.main;
 
 
 import android.content.DialogInterface;
@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +18,9 @@ import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import com.vichit.khmersong.R;
-import com.vichit.khmersong.interface_generator.SongService;
-import com.vichit.khmersong.service_generator.ServiceGenerator;
-import com.vichit.khmersong.song_respone.SongRequestByUser;
+import com.vichit.khmersong.retrofit.SongService;
+import com.vichit.khmersong.retrofit.ServiceGenerator;
+import com.vichit.khmersong.model.response.SongRequestByUser;
 
 import java.util.List;
 
@@ -110,6 +111,7 @@ public class RequestSongFragment extends Fragment implements View.OnClickListene
                     @Override
                     public void onFailure(Call<SongRequestByUser> call, Throwable t) {
                         t.printStackTrace();
+                        Log.e("ppppp", "onFailure");
                     }
                 });
 

@@ -1,4 +1,4 @@
-package com.vichit.khmersong.fragment.main;
+package com.vichit.khmersong.ui.fragment.main;
 
 
 import android.app.Activity;
@@ -23,8 +23,8 @@ import com.vichit.khmersong.R;
 import com.vichit.khmersong.adapter_layout.FavoriteCustomAdapter;
 import com.vichit.khmersong.callback.OnClickListener;
 import com.vichit.khmersong.callback.OnPassData;
-import com.vichit.khmersong.constant_key.SharePreferenceKey;
-import com.vichit.khmersong.song_respone.SongRespones;
+import com.vichit.khmersong.constant.SharePreferenceKey;
+import com.vichit.khmersong.model.response.SongRespones;
 
 import java.lang.reflect.Type;
 import java.util.List;

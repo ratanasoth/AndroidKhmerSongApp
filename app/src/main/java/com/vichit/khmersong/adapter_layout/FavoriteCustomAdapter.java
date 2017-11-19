@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import com.vichit.khmersong.R;
 import com.vichit.khmersong.callback.OnClickListener;
-import com.vichit.khmersong.song_respone.SongRespones;
+import com.vichit.khmersong.model.response.SongRespones;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.vichit.khmersong.adapter_tab.model;
+package com.vichit.khmersong.model.local;
 
 import android.support.v4.app.Fragment;
 
@@ -6,13 +6,13 @@ import android.support.v4.app.Fragment;
  * Created by VichitDeveloper on 7/22/17.
  */
 
-public class Tab {
+public class TabModel {
 
     private String title;
     private Fragment fragment;
     private int icon;
 
-    public Tab(String title, Fragment fragment) {
+    public TabModel(String title, Fragment fragment) {
         this.title = title;
         this.fragment = fragment;
 

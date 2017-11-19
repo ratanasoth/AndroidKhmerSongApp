@@ -1,4 +1,4 @@
-package com.vichit.khmersong.model;
+package com.vichit.khmersong.model.local;
 
 /**
  * Created by VichitDeveloper on 8/22/17.

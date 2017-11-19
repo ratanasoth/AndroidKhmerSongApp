@@ -1,4 +1,4 @@
-package com.vichit.khmersong.song_respone;
+package com.vichit.khmersong.model.response;
 
 import com.google.gson.annotations.SerializedName;
 

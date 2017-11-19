@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.vichit.khmersong.R;
 import com.vichit.khmersong.callback.OnClearCache;
-import com.vichit.khmersong.model.SetInformationModel;
+import com.vichit.khmersong.model.local.SetInformationModel;
 
 import java.util.ArrayList;
 import java.util.List;

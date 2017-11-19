@@ -1,10 +1,11 @@
-package com.vichit.khmersong.main;
+package com.vichit.khmersong.ui.activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.Settings;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.akexorcist.localizationactivity.LocalizationActivity;
 import com.example.jean.jcplayer.JcAudio;
@@ -25,12 +27,12 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.vichit.khmersong.R;
 import com.vichit.khmersong.callback.OnPassData;
-import com.vichit.khmersong.fragment.main.FavoriteFragment;
-import com.vichit.khmersong.fragment.main.MainFragmentSong;
-import com.vichit.khmersong.fragment.main.RequestSongFragment;
-import com.vichit.khmersong.fragment.main.SetInformationFragment;
-import com.vichit.khmersong.fragment.main.SingerFragment;
-import com.vichit.khmersong.song_respone.SongRespones;
+import com.vichit.khmersong.ui.fragment.main.FavoriteFragment;
+import com.vichit.khmersong.ui.fragment.main.MainFragmentSong;
+import com.vichit.khmersong.ui.fragment.main.RequestSongFragment;
+import com.vichit.khmersong.ui.fragment.main.SetInformationFragment;
+import com.vichit.khmersong.ui.fragment.main.SingerFragment;
+import com.vichit.khmersong.model.response.SongRespones;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +46,8 @@ public class MainActivity extends LocalizationActivity implements NavigationView
     private FragmentManager fragmentManager;
     private Fragment fragment;
     private String tag;
+    private boolean backPressedToExitOnce = false;
+    private Toast toast = null;
 
 
     @Override
@@ -74,8 +78,6 @@ public class MainActivity extends LocalizationActivity implements NavigationView
 
         fragmentManager = getSupportFragmentManager();
         homePage();
-
-
     }
 
     @Override
@@ -84,8 +86,34 @@ public class MainActivity extends LocalizationActivity implements NavigationView
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            if (backPressedToExitOnce) {
+                super.onBackPressed();
+            } else {
+                this.backPressedToExitOnce = true;
+                showToast("Press again to exit");
+                new Handler().postDelayed(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        backPressedToExitOnce = false;
+                    }
+                }, 2000);
+            }
         }
+    }
+
+    private void showToast(String message) {
+        if (this.toast == null) {
+            this.toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
+
+        } else if (this.toast.getView() == null) {
+            this.toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
+
+        } else {
+            this.toast.setText(message);
+        }
+
+        this.toast.show();
     }
 
     @Override
@@ -263,7 +291,8 @@ public class MainActivity extends LocalizationActivity implements NavigationView
         tag = "home";
 
     }
-    private void homePage(){
+
+    private void homePage() {
         if (fragmentManager.findFragmentByTag("home") != null) {
             fragment = fragmentManager.findFragmentByTag("home");
         } else {

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".fragment.fragment_tab.SubFragmentModernMusic">
+    tools:context=".ui.fragment.fragment_tab.SubFragmentModernMusic">
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshModernSong"

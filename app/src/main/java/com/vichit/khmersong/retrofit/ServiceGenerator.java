@@ -1,4 +1,4 @@
-package com.vichit.khmersong.service_generator;
+package com.vichit.khmersong.retrofit;
 
 import java.io.IOException;
 

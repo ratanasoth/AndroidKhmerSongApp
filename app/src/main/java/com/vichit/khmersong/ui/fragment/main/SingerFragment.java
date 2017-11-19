@@ -1,4 +1,4 @@
-package com.vichit.khmersong.fragment.main;
+package com.vichit.khmersong.ui.fragment.main;
 
 
 import android.app.AlertDialog;
@@ -17,11 +17,11 @@ import android.view.ViewGroup;
 import com.vichit.khmersong.R;
 import com.vichit.khmersong.adapter_layout.SingerCustomAdapter;
 import com.vichit.khmersong.callback.OnClickListener;
-import com.vichit.khmersong.fragment.detail_fragment.DetailSingerSongFragment;
-import com.vichit.khmersong.interface_generator.SongService;
-import com.vichit.khmersong.service_generator.ServiceGenerator;
-import com.vichit.khmersong.song_respone.SingerResponse;
-import com.vichit.khmersong.song_respone.SongRespones;
+import com.vichit.khmersong.ui.fragment.detail_fragment.DetailSingerSongFragment;
+import com.vichit.khmersong.retrofit.SongService;
+import com.vichit.khmersong.retrofit.ServiceGenerator;
+import com.vichit.khmersong.model.response.SingerResponse;
+import com.vichit.khmersong.model.response.SongRespones;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.vichit.khmersong.fragment.fragment_tab;
+package com.vichit.khmersong.ui.fragment.fragment_tab;
 
 
 import android.app.Activity;
@@ -17,9 +17,9 @@ import com.vichit.khmersong.R;
 import com.vichit.khmersong.adapter_layout.MusicCustomAdapter;
 import com.vichit.khmersong.callback.OnClickListener;
 import com.vichit.khmersong.callback.OnPassData;
-import com.vichit.khmersong.interface_generator.SongService;
-import com.vichit.khmersong.service_generator.ServiceGenerator;
-import com.vichit.khmersong.song_respone.SongRespones;
+import com.vichit.khmersong.retrofit.SongService;
+import com.vichit.khmersong.retrofit.ServiceGenerator;
+import com.vichit.khmersong.model.response.SongRespones;
 
 import java.util.ArrayList;
 import java.util.List;

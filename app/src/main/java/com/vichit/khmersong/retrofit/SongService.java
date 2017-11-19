@@ -1,12 +1,10 @@
-package com.vichit.khmersong.interface_generator;
+package com.vichit.khmersong.retrofit;
 
-import com.vichit.khmersong.model.SongRequest;
-import com.vichit.khmersong.song_respone.SingerResponse;
-import com.vichit.khmersong.song_respone.SongRequestByUser;
-import com.vichit.khmersong.song_respone.SongRespones;
+import com.vichit.khmersong.model.response.SingerResponse;
+import com.vichit.khmersong.model.response.SongRequestByUser;
+import com.vichit.khmersong.model.response.SongRespones;
 
 import retrofit2.Call;
-import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -35,8 +33,8 @@ public interface SongService {
     Call<SongRequestByUser> songRequestByUser(@Field("song_name") String songName,
                                               @Field("singer_name") String singerName,
                                               @Field("general_input") String userInputDetail);
-    @POST("api/v1/request")
-    Call<SongRequestByUser> s (@Body SongRequest songRequest);
+//    @POST("api/v1/request")
+//    Call<SongRequestByUser> s (@Body SongRequest songRequest);
 
 
 }

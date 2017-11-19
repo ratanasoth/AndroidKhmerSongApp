@@ -1,4 +1,4 @@
-package com.vichit.khmersong.fragment.main;
+package com.vichit.khmersong.ui.fragment.main;
 
 
 import android.content.Context;
@@ -20,9 +20,9 @@ import com.google.gson.reflect.TypeToken;
 import com.vichit.khmersong.R;
 import com.vichit.khmersong.adapter_layout.SetInformationCustomAdapter;
 import com.vichit.khmersong.callback.OnClearCache;
-import com.vichit.khmersong.constant_key.SharePreferenceKey;
-import com.vichit.khmersong.model.SetInformationModel;
-import com.vichit.khmersong.song_respone.SongRespones;
+import com.vichit.khmersong.constant.SharePreferenceKey;
+import com.vichit.khmersong.model.local.SetInformationModel;
+import com.vichit.khmersong.model.response.SongRespones;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;

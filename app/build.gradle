@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "26.0.0"
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.vichit.khmersong"
         minSdkVersion 16
@@ -28,6 +28,7 @@ dependencies {
     compile('com.akexorcist:localizationactivity:1.1.2') {
         exclude module: 'appcompat-v7'
     }
+
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
@@ -43,6 +44,5 @@ dependencies {
     compile 'com.mobsandgeeks:android-saripaar:2.0.3'
     compile 'com.github.d-max:spots-dialog:0.4@aar'
     compile 'com.google.android.gms:play-services-ads:11.0.4'
-
     testCompile 'junit:junit:4.12'
 }

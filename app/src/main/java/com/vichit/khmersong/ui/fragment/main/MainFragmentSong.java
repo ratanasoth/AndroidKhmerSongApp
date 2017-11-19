@@ -1,4 +1,4 @@
-package com.vichit.khmersong.fragment.main;
+package com.vichit.khmersong.ui.fragment.main;
 
 
 import android.os.Bundle;
@@ -12,9 +12,9 @@ import android.view.ViewGroup;
 
 import com.vichit.khmersong.R;
 import com.vichit.khmersong.adapter_tab.adapter.MyPagerApdapter;
-import com.vichit.khmersong.adapter_tab.model.Tab;
-import com.vichit.khmersong.fragment.fragment_tab.SubFragmentModernMusic;
-import com.vichit.khmersong.fragment.fragment_tab.SubFragmentOldMusic;
+import com.vichit.khmersong.model.local.TabModel;
+import com.vichit.khmersong.ui.fragment.fragment_tab.SubFragmentModernMusic;
+import com.vichit.khmersong.ui.fragment.fragment_tab.SubFragmentOldMusic;
 
 public class MainFragmentSong extends Fragment {
     TabLayout tabLayout;
@@ -47,8 +47,8 @@ public class MainFragmentSong extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         adapter = new MyPagerApdapter(getChildFragmentManager(), getContext());
-        adapter.addTab(new Tab(getString(R.string.tab_modern_song), subFragmentModernMusic));
-        adapter.addTab(new Tab(getString(R.string.tab_classic_song), subFragmentOldMusic));
+        adapter.addTab(new TabModel(getString(R.string.tab_modern_song), subFragmentModernMusic));
+        adapter.addTab(new TabModel(getString(R.string.tab_classic_song), subFragmentOldMusic));
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
 
